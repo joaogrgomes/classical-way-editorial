@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const articles = [
   {
     category: "Gramática & Paideia",
@@ -42,9 +44,9 @@ const ArticlesSection = () => (
             Artigos Recentes
           </span>
         </div>
-        <a href="#artigos" className="font-display text-[0.5rem] tracking-[0.14em] uppercase text-gy-300 hover:text-bx-700 transition-colors flex items-center gap-1.5">
+        <Link to="/artigos" className="font-display text-[0.5rem] tracking-[0.14em] uppercase text-gy-300 hover:text-bx-700 transition-colors flex items-center gap-1.5">
           Ver todos →
-        </a>
+        </Link>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-10 items-start">

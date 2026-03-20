@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { Search, Menu, X } from "lucide-react";
+import { Link } from "react-router-dom";
 import LogoMark from "./LogoMark";
 
 const navItems = [
   { label: "Sobre", href: "#sobre" },
-  { label: "Artigos", href: "#artigos" },
-  { label: "Podcast", href: "#podcast" },
-  { label: "Ensaios", href: "#ensaios" },
+  { label: "Artigos", href: "/artigos" },
+  { label: "Podcast", href: "/podcast" },
+  { label: "Ensaios", href: "/ensaios" },
   { label: "Contato", href: "#contato" },
 ];
 
@@ -26,24 +27,34 @@ const SiteHeader = () => {
         </button>
 
         {/* Logo */}
-        <a href="#" className="flex-1 flex justify-center lg:justify-start items-center gap-3.5 group">
+        <Link to="/" className="flex-1 flex justify-center lg:justify-start items-center gap-3.5 group">
           <LogoMark size={40} />
           <span className="font-display text-[0.82rem] font-bold tracking-[0.18em] uppercase text-gd-300 leading-none whitespace-nowrap">
             The Classical Way
           </span>
-        </a>
+        </Link>
 
         {/* Desktop nav */}
         <nav className="hidden lg:flex items-center gap-0" aria-label="Navegação principal">
-          {navItems.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              className="font-display text-[0.5rem] tracking-[0.14em] uppercase text-white/50 px-3.5 py-2.5 transition-colors duration-200 hover:text-gd-500"
-            >
-              {item.label}
-            </a>
-          ))}
+          {navItems.map((item) =>
+            item.href.startsWith("/") ? (
+              <Link
+                key={item.label}
+                to={item.href}
+                className="font-display text-[0.5rem] tracking-[0.14em] uppercase text-white/50 px-3.5 py-2.5 transition-colors duration-200 hover:text-gd-500"
+              >
+                {item.label}
+              </Link>
+            ) : (
+              <a
+                key={item.label}
+                href={item.href}
+                className="font-display text-[0.5rem] tracking-[0.14em] uppercase text-white/50 px-3.5 py-2.5 transition-colors duration-200 hover:text-gd-500"
+              >
+                {item.label}
+              </a>
+            )
+          )}
         </nav>
 
         {/* Actions */}
@@ -63,16 +74,27 @@ const SiteHeader = () => {
       {/* Mobile nav */}
       {mobileOpen && (
         <nav className="lg:hidden bg-bx-800 border-t border-white/5 py-4 px-[clamp(16px,4vw,48px)]">
-          {navItems.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              className="block font-display text-[0.56rem] tracking-[0.14em] uppercase text-white/50 py-2.5 hover:text-gd-500 transition-colors"
-              onClick={() => setMobileOpen(false)}
-            >
-              {item.label}
-            </a>
-          ))}
+          {navItems.map((item) =>
+            item.href.startsWith("/") ? (
+              <Link
+                key={item.label}
+                to={item.href}
+                className="block font-display text-[0.56rem] tracking-[0.14em] uppercase text-white/50 py-2.5 hover:text-gd-500 transition-colors"
+                onClick={() => setMobileOpen(false)}
+              >
+                {item.label}
+              </Link>
+            ) : (
+              <a
+                key={item.label}
+                href={item.href}
+                className="block font-display text-[0.56rem] tracking-[0.14em] uppercase text-white/50 py-2.5 hover:text-gd-500 transition-colors"
+                onClick={() => setMobileOpen(false)}
+              >
+                {item.label}
+              </a>
+            )
+          )}
         </nav>
       )}
     </header>
