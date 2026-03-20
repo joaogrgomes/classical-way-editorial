@@ -38,9 +38,9 @@ const PodcastSection = () => (
             Podcasts e Vídeos
           </span>
         </div>
-        <a href="#podcast" className="font-display text-[0.5rem] tracking-[0.14em] uppercase text-gy-300 hover:text-bx-700 transition-colors">
+        <Link to="/podcast" className="font-display text-[0.5rem] tracking-[0.14em] uppercase text-gy-300 hover:text-bx-700 transition-colors">
           Ver todos →
-        </a>
+        </Link>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

@@ -42,7 +42,7 @@ const EssaysSection = () => (
             Ensaios Fundamentais
           </span>
         </div>
-        <a href="#ensaios" className="font-display text-[0.5rem] tracking-[0.14em] uppercase text-white/35 hover:text-gd-500 transition-colors">
+        <a href="/ensaios" className="font-display text-[0.5rem] tracking-[0.14em] uppercase text-white/35 hover:text-gd-500 transition-colors">
           Ver biblioteca →
         </a>
       </div>
