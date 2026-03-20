@@ -74,16 +74,27 @@ const SiteHeader = () => {
       {/* Mobile nav */}
       {mobileOpen && (
         <nav className="lg:hidden bg-bx-800 border-t border-white/5 py-4 px-[clamp(16px,4vw,48px)]">
-          {navItems.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              className="block font-display text-[0.56rem] tracking-[0.14em] uppercase text-white/50 py-2.5 hover:text-gd-500 transition-colors"
-              onClick={() => setMobileOpen(false)}
-            >
-              {item.label}
-            </a>
-          ))}
+          {navItems.map((item) =>
+            item.href.startsWith("/") ? (
+              <Link
+                key={item.label}
+                to={item.href}
+                className="block font-display text-[0.56rem] tracking-[0.14em] uppercase text-white/50 py-2.5 hover:text-gd-500 transition-colors"
+                onClick={() => setMobileOpen(false)}
+              >
+                {item.label}
+              </Link>
+            ) : (
+              <a
+                key={item.label}
+                href={item.href}
+                className="block font-display text-[0.56rem] tracking-[0.14em] uppercase text-white/50 py-2.5 hover:text-gd-500 transition-colors"
+                onClick={() => setMobileOpen(false)}
+              >
+                {item.label}
+              </a>
+            )
+          )}
         </nav>
       )}
     </header>
