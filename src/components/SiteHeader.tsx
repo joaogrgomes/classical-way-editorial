@@ -36,15 +36,25 @@ const SiteHeader = () => {
 
         {/* Desktop nav */}
         <nav className="hidden lg:flex items-center gap-0" aria-label="Navegação principal">
-          {navItems.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              className="font-display text-[0.5rem] tracking-[0.14em] uppercase text-white/50 px-3.5 py-2.5 transition-colors duration-200 hover:text-gd-500"
-            >
-              {item.label}
-            </a>
-          ))}
+          {navItems.map((item) =>
+            item.href.startsWith("/") ? (
+              <Link
+                key={item.label}
+                to={item.href}
+                className="font-display text-[0.5rem] tracking-[0.14em] uppercase text-white/50 px-3.5 py-2.5 transition-colors duration-200 hover:text-gd-500"
+              >
+                {item.label}
+              </Link>
+            ) : (
+              <a
+                key={item.label}
+                href={item.href}
+                className="font-display text-[0.5rem] tracking-[0.14em] uppercase text-white/50 px-3.5 py-2.5 transition-colors duration-200 hover:text-gd-500"
+              >
+                {item.label}
+              </a>
+            )
+          )}
         </nav>
 
         {/* Actions */}
