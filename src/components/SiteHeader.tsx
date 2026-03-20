@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { Search, Menu, X } from "lucide-react";
+import { Link } from "react-router-dom";
 import LogoMark from "./LogoMark";
 
 const navItems = [
   { label: "Sobre", href: "#sobre" },
-  { label: "Artigos", href: "#artigos" },
-  { label: "Podcast", href: "#podcast" },
-  { label: "Ensaios", href: "#ensaios" },
+  { label: "Artigos", href: "/artigos" },
+  { label: "Podcast", href: "/podcast" },
+  { label: "Ensaios", href: "/ensaios" },
   { label: "Contato", href: "#contato" },
 ];
 
