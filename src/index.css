@@ -2,94 +2,74 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Brand — Bordeaux */
+    --bx-900: 343 57% 14%;
+    --bx-800: 343 53% 23%;
+    --bx-700: 343 55% 30%;
+    --bx-600: 343 52% 40%;
+    --bx-400: 343 44% 57%;
+    --bx-200: 343 47% 81%;
+    --bx-100: 343 52% 91%;
 
+    /* Brand — Gold */
+    --gd-900: 36 71% 21%;
+    --gd-800: 36 67% 29%;
+    --gd-700: 36 60% 41%;
+    --gd-600: 36 55% 51%;
+    --gd-500: 40 65% 64%;
+    --gd-300: 40 64% 77%;
+    --gd-100: 40 71% 91%;
+
+    /* Neutrals — Warm Gray */
+    --gy-950: 30 4% 7%;
+    --gy-900: 30 6% 11%;
+    --gy-800: 30 5% 17%;
+    --gy-700: 30 3% 23%;
+    --gy-600: 27 5% 32%;
+    --gy-500: 27 4% 40%;
+    --gy-400: 27 4% 52%;
+    --gy-300: 27 4% 67%;
+    --gy-200: 30 6% 78%;
+    --gy-100: 30 8% 88%;
+    --gy-50: 30 9% 93%;
+
+    /* Surfaces */
+    --surface: 36 33% 98%;
+    --surface-warm: 36 28% 94%;
+    --surface-parchment: 38 30% 89%;
+    --surface-deep: 38 22% 83%;
+
+    /* Semantic tokens */
+    --background: var(--surface);
+    --foreground: var(--gy-900);
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
+    --card-foreground: var(--gy-900);
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
+    --popover-foreground: var(--gy-900);
+    --primary: var(--bx-700);
+    --primary-foreground: 0 0% 100%;
+    --secondary: var(--surface-warm);
+    --secondary-foreground: var(--gy-800);
+    --muted: var(--gy-50);
+    --muted-foreground: var(--gy-500);
+    --accent: var(--gd-600);
+    --accent-foreground: var(--gy-950);
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: var(--gy-100);
+    --input: var(--gy-200);
+    --ring: var(--gd-600);
+    --radius: 0rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
@@ -100,6 +80,57 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    font-family: 'EB Garamond', 'Garamond', Georgia, serif;
+    line-height: 1.7;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
   }
 }
+
+/* Font families as utilities */
+@layer utilities {
+  .font-display {
+    font-family: 'Cinzel', serif;
+  }
+  .font-heading {
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+  .font-body {
+    font-family: 'EB Garamond', 'Garamond', Georgia, serif;
+  }
+  .font-serif-alt {
+    font-family: 'Libre Baskerville', Georgia, serif;
+  }
+}
+
+/* Scroll reveal */
+@layer utilities {
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    filter: blur(3px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                filter 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.in {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+  .reveal-delay-1 { transition-delay: 80ms; }
+  .reveal-delay-2 { transition-delay: 160ms; }
+  .reveal-delay-3 { transition-delay: 240ms; }
+}
+
+/* Triple rule ornament */
+.triple-rule .r1 { display: block; height: 3px; background: hsl(var(--bx-800)); margin-bottom: 3px; }
+.triple-rule .r2 { display: block; height: 1.5px; background: hsl(var(--gd-600)); margin-bottom: 3px; }
+.triple-rule .r3 { display: block; height: 1px; background: hsl(var(--bx-800)); }
