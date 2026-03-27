@@ -62,12 +62,12 @@ const SiteHeader = () => {
           <button className="w-[34px] h-[34px] flex items-center justify-center text-white/55 hover:text-gd-500 transition-colors" aria-label="Buscar">
             <Search size={17} />
           </button>
-          <a
-            href="#contato"
+          <Link
+            to="/apoiar"
             className="hidden sm:block font-display text-[0.5rem] tracking-[0.16em] uppercase bg-gd-700 text-white px-3.5 py-[7px] hover:bg-gd-600 transition-colors"
           >
             Apoiar
-          </a>
+          </Link>
         </div>
       </div>
 
