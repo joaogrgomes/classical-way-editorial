@@ -38,7 +38,7 @@ const PodcastSection = () => (
             Podcasts e Vídeos
           </span>
         </div>
-        <Link to="/podcast" className="font-display text-[0.5rem] tracking-[0.14em] uppercase text-gy-300 hover:text-bx-700 transition-colors">
+        <Link to="/podcasts" className="font-display text-[0.5rem] tracking-[0.14em] uppercase text-gy-300 hover:text-bx-700 transition-colors">
           Ver todos →
         </Link>
       </div>
