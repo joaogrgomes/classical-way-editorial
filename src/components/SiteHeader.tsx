@@ -6,7 +6,7 @@ import LogoMark from "./LogoMark";
 const navItems = [
   { label: "Sobre", href: "#sobre" },
   { label: "Artigos", href: "/artigos" },
-  { label: "Podcast", href: "/podcast" },
+  { label: "Podcasts", href: "/podcasts" },
   { label: "Ensaios", href: "/ensaios" },
   { label: "Contato", href: "#contato" },
 ];
