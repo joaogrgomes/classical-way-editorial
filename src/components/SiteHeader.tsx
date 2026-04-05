@@ -19,7 +19,7 @@ const SiteHeader = () => {
       <div className="max-w-[1120px] mx-auto px-[clamp(16px,4vw,48px)] h-[58px] flex items-center gap-5">
         {/* Mobile toggle */}
         <button
-          className="lg:hidden text-gd-300 hover:text-gd-500 transition-colors"
+          className="lg:hidden text-bx-700 hover:text-gd-500 transition-colors"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Menu"
         >
