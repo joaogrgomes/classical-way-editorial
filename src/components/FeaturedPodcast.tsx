@@ -8,7 +8,8 @@ const FeaturedPodcast = () => {
   const [progress, setProgress] = useState(0);
 
   return (
-    <section className="py-14 lg:py-20 bg-surface-warm border-t border-gy-100">
+    <section className="py-14 lg:py-20 bg-surface-warm relative">
+      <div className="triple-rule absolute top-0 left-0 right-0"><span className="r1" /><span className="r2" /><span className="r3" /></div>
       <div className="max-w-[1120px] mx-auto px-[clamp(16px,4vw,48px)]">
         <div className="flex items-center gap-3.5 mb-8">
           <div className="w-8 h-0.5 bg-bx-700 flex-shrink-0" />
@@ -97,6 +98,7 @@ const FeaturedPodcast = () => {
           </div>
         </div>
       </div>
+      <div className="triple-rule absolute bottom-0 left-0 right-0"><span className="r1" /><span className="r2" /><span className="r3" /></div>
     </section>
   );
 };
