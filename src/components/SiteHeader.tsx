@@ -73,7 +73,7 @@ const SiteHeader = () => {
 
       {/* Mobile nav */}
       {mobileOpen && (
-        <nav className="lg:hidden bg-bx-800 border-t border-white/5 py-4 px-[clamp(16px,4vw,48px)]">
+        <nav className="lg:hidden bg-gy-100 border-t border-bx-900/10 py-4 px-[clamp(16px,4vw,48px)]">
           {navItems.map((item) =>
             item.href.startsWith("/") ? (
               <Link
