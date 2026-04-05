@@ -29,7 +29,7 @@ const SiteHeader = () => {
         {/* Logo */}
         <Link to="/" className="flex-1 flex justify-center lg:justify-start items-center gap-3.5 group">
           <LogoMark size={40} />
-          <span className="font-display text-[0.82rem] font-bold tracking-[0.18em] uppercase text-gd-300 leading-none whitespace-nowrap">
+          <span className="font-display text-[0.82rem] font-bold tracking-[0.18em] uppercase text-bx-900 leading-none whitespace-nowrap">
             The Classical Way
           </span>
         </Link>
