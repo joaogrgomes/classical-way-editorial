@@ -44,7 +44,7 @@ const FeaturedPodcast = () => {
             </p>
 
             {/* Audio Player UI */}
-            <div className="bg-background border border-gy-100 p-5 max-w-[560px]">
+            <div className="p-5 max-w-[560px]">
               {/* Progress bar */}
               <div className="flex items-center gap-3 mb-4">
                 <span className="font-display text-[0.46rem] tracking-[0.08em] text-gy-400 w-10 text-right tabular-nums">
