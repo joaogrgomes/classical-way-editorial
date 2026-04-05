@@ -88,7 +88,7 @@ const SiteHeader = () => {
               <a
                 key={item.label}
                 href={item.href}
-                className="block font-display text-[0.56rem] tracking-[0.14em] uppercase text-white/50 py-2.5 hover:text-gd-500 transition-colors"
+                className="block font-display text-[0.56rem] tracking-[0.14em] uppercase text-bx-700 py-2.5 hover:text-gd-500 transition-colors"
                 onClick={() => setMobileOpen(false)}
               >
                 {item.label}
