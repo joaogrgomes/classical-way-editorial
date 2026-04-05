@@ -15,7 +15,7 @@ const SiteHeader = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-bx-900 shadow-[0_2px_16px_rgba(0,0,0,0.2)]">
+    <header className="sticky top-0 z-50 bg-surface-parchment shadow-[0_2px_16px_rgba(0,0,0,0.08)]">
       <div className="max-w-[1120px] mx-auto px-[clamp(16px,4vw,48px)] h-[58px] flex items-center gap-5">
         {/* Mobile toggle */}
         <button
