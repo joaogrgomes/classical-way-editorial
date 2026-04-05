@@ -41,7 +41,7 @@ const SiteHeader = () => {
               <Link
                 key={item.label}
                 to={item.href}
-                className="font-display text-[0.5rem] tracking-[0.14em] uppercase text-white/50 px-3.5 py-2.5 transition-colors duration-200 hover:text-gd-500"
+                className="font-display text-[0.5rem] tracking-[0.14em] uppercase text-bx-700 px-3.5 py-2.5 transition-colors duration-200 hover:text-gd-500"
               >
                 {item.label}
               </Link>
