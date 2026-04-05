@@ -1,11 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { Play, Pause, SkipBack, SkipForward } from "lucide-react";
+import { Play, Pause, SkipBack, SkipForward, ChevronDown, ExternalLink } from "lucide-react";
 import podcastCover from "@/assets/podcast-cover.jpg";
 
 const FeaturedPodcast = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [subOpen, setSubOpen] = useState(false);
+  const subRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (subRef.current && !subRef.current.contains(e.target as Node)) setSubOpen(false);
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
 
   return (
     <section className="py-14 lg:py-20 bg-surface-warm relative">
@@ -87,13 +97,28 @@ const FeaturedPodcast = () => {
             </div>
 
             {/* Links */}
-            <div className="mt-5 flex gap-5">
-              <Link
-                to="/podcasts"
-                className="font-display text-[0.5rem] tracking-[0.14em] uppercase text-bx-700 hover:text-bx-600 transition-colors"
-              >
-                Ver todos os episódios →
-              </Link>
+            <div className="mt-5 flex items-center gap-5">
+              <div className="relative" ref={subRef}>
+                <button
+                  onClick={() => setSubOpen(!subOpen)}
+                  className="bg-gy-900 text-white font-display text-[0.5rem] tracking-[0.16em] uppercase px-4 py-2 flex items-center gap-2 transition-colors hover:bg-gy-700"
+                >
+                  Inscrever-se <ChevronDown size={12} />
+                </button>
+                {subOpen && (
+                  <div className="absolute top-full left-0 mt-1 bg-gy-900 text-white z-20 min-w-[180px]">
+                    {["Apple Podcasts", "Spotify", "RSS"].map((p) => (
+                      <a key={p} href="#" className="flex items-center gap-2 py-2 px-4 font-display text-[0.5rem] tracking-[0.14em] uppercase hover:bg-gy-700 cursor-pointer transition-colors">
+                        <ExternalLink size={12} /> {p}
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
+              <a href="#" className="font-display text-[0.5rem] tracking-[0.14em] uppercase text-gy-600 hover:text-gy-900 transition-colors flex items-center gap-2">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
+                Assistir no YouTube
+              </a>
             </div>
           </div>
         </div>
