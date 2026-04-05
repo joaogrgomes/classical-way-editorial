@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import heroBg from "@/assets/hero-banner-library.jpg";
 
 const HeroBanner = () => (
+  <div className="px-[clamp(16px,4vw,48px)] py-8">
   <section className="relative min-h-[420px] lg:min-h-[520px] flex items-end overflow-hidden">
     <img
       src={heroBg}
@@ -29,6 +30,7 @@ const HeroBanner = () => (
       </Link>
     </div>
   </section>
+  </div>
 );
 
 export default HeroBanner;
