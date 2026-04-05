@@ -59,7 +59,7 @@ const SiteHeader = () => {
 
         {/* Actions */}
         <div className="flex items-center gap-2">
-          <button className="w-[34px] h-[34px] flex items-center justify-center text-white/55 hover:text-gd-500 transition-colors" aria-label="Buscar">
+          <button className="w-[34px] h-[34px] flex items-center justify-center text-bx-700 hover:text-gd-500 transition-colors" aria-label="Buscar">
             <Search size={17} />
           </button>
           <Link
