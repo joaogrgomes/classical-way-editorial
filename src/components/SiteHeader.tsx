@@ -3,7 +3,7 @@ import { Search, Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const navItems = [
-  { label: "Sobre", href: "#sobre" },
+  { label: "Sobre", href: "/sobre" },
   { label: "Artigos", href: "/artigos" },
   { label: "Podcasts", href: "/podcasts" },
   { label: "Ensaios", href: "/ensaios" },
