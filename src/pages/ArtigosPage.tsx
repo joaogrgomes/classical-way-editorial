@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
@@ -141,7 +142,7 @@ const ArtigosPage = () => {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
               {filtered.map((article) => (
-                <article key={article.title} className="group cursor-pointer reveal">
+                <Link key={article.title} to="/artigos/exemplo" className="group cursor-pointer reveal block">
                   <div className="aspect-[4/3] overflow-hidden mb-4">
                     <img
                       src={article.image}
@@ -163,7 +164,7 @@ const ArtigosPage = () => {
                     <span className="font-display text-[0.46rem] tracking-[0.12em] uppercase text-gy-400">{article.author}</span>
                     <span className="font-display text-[0.46rem] tracking-[0.1em] uppercase text-gy-300">{article.date}</span>
                   </div>
-                </article>
+                </Link>
               ))}
             </div>
           )}
