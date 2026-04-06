@@ -176,7 +176,7 @@ const BookReviewsPage = () => {
                       {book.reviewer}
                     </span>
                     <Link
-                      to="#"
+                      to="/resenhas/exemplo"
                       className="font-display text-[0.46rem] tracking-[0.12em] uppercase text-bx-700 hover:text-bx-600 transition-colors"
                     >
                       Ler Resenha →
