@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Index from "./pages/Index.tsx";
 import ArtigosPage from "./pages/ArtigosPage.tsx";
+import ArtigoPage from "./pages/ArtigoPage.tsx";
 import EnsaiosPage from "./pages/EnsaiosPage.tsx";
 import PodcastPage from "./pages/PodcastPage.tsx";
 import PodcastsPage from "./pages/PodcastsPage.tsx";
@@ -23,6 +24,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/artigos" element={<ArtigosPage />} />
+          <Route path="/artigos/:slug" element={<ArtigoPage />} />
           <Route path="/ensaios" element={<EnsaiosPage />} />
           <Route path="/podcasts" element={<PodcastsPage />} />
           <Route path="/podcasts/:slug" element={<PodcastPage />} />
