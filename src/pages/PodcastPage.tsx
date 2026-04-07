@@ -85,7 +85,7 @@ const allEpisodes = [
 const ITEMS_PER_PAGE = 6;
 
 const PodcastPage = () => {
-  const [activeCategory, setActiveCategory] = useState("Todos");
+  const [activeCategory, setActiveCategory] = useState("Mais recentes");
   const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
   const [subOpen, setSubOpen] = useState(false);
   const subRef = useRef<HTMLDivElement>(null);
@@ -99,9 +99,9 @@ const PodcastPage = () => {
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
-  const filtered = activeCategory === "Todos"
-    ? allEpisodes
-    : allEpisodes.filter((e) => e.type === activeCategory);
+  const filtered = activeCategory === "Mais vistos"
+    ? [...allEpisodes].reverse()
+    : allEpisodes;
 
   const visible = filtered.slice(0, visibleCount);
   const hasMore = visibleCount < filtered.length;
