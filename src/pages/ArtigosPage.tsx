@@ -1,14 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import { ChevronDown } from "lucide-react";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
-const categories = ["Todos", "Gramática & Paideia", "Filosofia", "Literatura Clássica", "Teologia", "Currículo", "Família"];
+const themes = ["Todos os temas", "Sala de Aula", "Família", "Trivium", "Quadrivium", "Arte & Cultura", "Teologia & Pedagogia", "Negócios & Marketing", "Gestão"];
 
 const allArticles = [
   {
-    category: "Gramática & Paideia",
+    category: "Sala de Aula",
     title: "Aprender Latim não é elitismo: é restituir o acesso à sabedoria ocidental",
     excerpt: "A língua latina não é um luxo arcaico, mas a chave para uma herança intelectual e espiritual que moldou a civilização.",
     author: "Profa. Clara Mendes",
@@ -16,7 +17,7 @@ const allArticles = [
     image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Folio_27r_-_The_Book_of_Kells.jpg/800px-Folio_27r_-_The_Book_of_Kells.jpg",
   },
   {
-    category: "Filosofia",
+    category: "Trivium",
     title: "Platão na sala de aula: o mito da caverna como método pedagógico",
     excerpt: "Da alegoria platônica à prática docente contemporânea — como a filosofia clássica transforma o ensino.",
     author: "Dr. Samuel Luz",
@@ -24,7 +25,7 @@ const allArticles = [
     image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Plato_Pio-Clementino_Inv305.jpg/800px-Plato_Pio-Clementino_Inv305.jpg",
   },
   {
-    category: "Literatura Clássica",
+    category: "Arte & Cultura",
     title: "Homero, os heróis e a educação do coração",
     excerpt: "A Ilíada e a Odisseia como mapas da condição humana que ressoam com a antropologia cristã.",
     author: "Prof. Rodrigo Castro",
@@ -32,7 +33,7 @@ const allArticles = [
     image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Euphronios_krater_side_A_MET_1972.11.10.jpg/1200px-Euphronios_krater_side_A_MET_1972.11.10.jpg",
   },
   {
-    category: "Teologia",
+    category: "Teologia & Pedagogia",
     title: "Lutero, Calvino e a reforma do ensino: uma herança protestante",
     excerpt: "Como a Reforma moldou uma nova visão de educação centrada na Escritura, na leitura e na formação do caráter.",
     author: "Rev. Tiago Nogueira",
@@ -40,7 +41,7 @@ const allArticles = [
     image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Folio_27r_-_The_Book_of_Kells.jpg/800px-Folio_27r_-_The_Book_of_Kells.jpg",
   },
   {
-    category: "Currículo",
+    category: "Sala de Aula",
     title: "Como estruturar um currículo clássico do zero",
     excerpt: "Um guia prático para famílias e escolas que desejam iniciar a jornada da educação clássica com clareza e método.",
     author: "Marina Santos",
@@ -48,7 +49,7 @@ const allArticles = [
     image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Plato_Pio-Clementino_Inv305.jpg/800px-Plato_Pio-Clementino_Inv305.jpg",
   },
   {
-    category: "Filosofia",
+    category: "Trivium",
     title: "Virtude em Aristóteles e sua relevância para a educação cristã hoje",
     excerpt: "A ética das virtudes como fundamento da formação integral do aluno — prudência, justiça, temperança e fortaleza.",
     author: "Dr. Samuel Luz",
@@ -64,7 +65,7 @@ const allArticles = [
     image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Folio_27r_-_The_Book_of_Kells.jpg/800px-Folio_27r_-_The_Book_of_Kells.jpg",
   },
   {
-    category: "Gramática & Paideia",
+    category: "Sala de Aula",
     title: "O papel da memorização na formação clássica",
     excerpt: "Decorar não é decorativo: a memória como faculdade essencial no Trivium e na tradição cristã.",
     author: "Profa. Clara Mendes",
@@ -72,7 +73,7 @@ const allArticles = [
     image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Plato_Pio-Clementino_Inv305.jpg/800px-Plato_Pio-Clementino_Inv305.jpg",
   },
   {
-    category: "Literatura Clássica",
+    category: "Arte & Cultura",
     title: "Virgílio e a educação do desejo: a Eneida como itinerário da alma",
     excerpt: "A epopeia romana como narrativa de formação — do exílio à pátria, da errância à vocação.",
     author: "Prof. Rodrigo Castro",
@@ -81,13 +82,40 @@ const allArticles = [
   },
 ];
 
+const uniqueAuthors = ["Todos os autores", ...Array.from(new Set(allArticles.map((a) => a.author)))];
+
 const ArtigosPage = () => {
-  const [activeCategory, setActiveCategory] = useState("Todos");
+  const [activeTheme, setActiveTheme] = useState("Todos os temas");
+  const [activeAuthor, setActiveAuthor] = useState("Todos os autores");
+  const [themeOpen, setThemeOpen] = useState(false);
+  const [authorOpen, setAuthorOpen] = useState(false);
+  const themeRef = useRef<HTMLDivElement>(null);
+  const authorRef = useRef<HTMLDivElement>(null);
   useScrollReveal();
 
-  const filtered = activeCategory === "Todos"
-    ? allArticles
-    : allArticles.filter((a) => a.category === activeCategory);
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (themeRef.current && !themeRef.current.contains(e.target as Node)) setThemeOpen(false);
+      if (authorRef.current && !authorRef.current.contains(e.target as Node)) setAuthorOpen(false);
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
+
+  const filtered = allArticles.filter((a) => {
+    const matchTheme = activeTheme === "Todos os temas" || a.category === activeTheme;
+    const matchAuthor = activeAuthor === "Todos os autores" || a.author === activeAuthor;
+    return matchTheme && matchAuthor;
+  });
+
+  const dropdownBtnClass =
+    "border border-gy-200 text-gy-700 font-display text-[0.48rem] tracking-[0.14em] uppercase px-4 py-2 flex items-center gap-2 hover:border-gy-400 transition-colors";
+
+  const dropdownMenuClass =
+    "absolute top-full left-0 mt-1 bg-background border border-gy-100 shadow-[0_4px_16px_rgba(0,0,0,0.08)] z-50 min-w-[200px]";
+
+  const dropdownItemClass =
+    "px-4 py-2.5 font-display text-[0.48rem] tracking-[0.14em] uppercase text-gy-700 hover:bg-surface-warm cursor-pointer block w-full text-left transition-colors";
 
   return (
     <div className="min-h-screen bg-background">
@@ -107,21 +135,47 @@ const ArtigosPage = () => {
 
       {/* Filters */}
       <div className="border-b border-gy-100 sticky top-[58px] z-40 bg-background/95 backdrop-blur-sm">
-        <div className="max-w-[1120px] mx-auto px-[clamp(16px,4vw,48px)]">
-          <div className="flex gap-0 overflow-x-auto scrollbar-hide py-0">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                className={`font-display text-[0.5rem] tracking-[0.14em] uppercase whitespace-nowrap px-4 py-3.5 border-b-2 transition-colors duration-200 ${
-                  activeCategory === cat
-                    ? "border-bx-700 text-bx-700 font-semibold"
-                    : "border-transparent text-gy-400 hover:text-gy-700"
-                }`}
-              >
-                {cat}
+        <div className="max-w-[1120px] mx-auto px-[clamp(16px,4vw,48px)] py-3">
+          <div className="flex gap-3 flex-wrap">
+            {/* Theme dropdown */}
+            <div className="relative" ref={themeRef}>
+              <button onClick={() => { setThemeOpen(!themeOpen); setAuthorOpen(false); }} className={dropdownBtnClass}>
+                {activeTheme} <ChevronDown size={12} className={`transition-transform ${themeOpen ? "rotate-180" : ""}`} />
               </button>
-            ))}
+              {themeOpen && (
+                <div className={dropdownMenuClass}>
+                  {themes.map((t) => (
+                    <button
+                      key={t}
+                      onClick={() => { setActiveTheme(t); setThemeOpen(false); }}
+                      className={`${dropdownItemClass} ${activeTheme === t ? "bg-surface-warm text-bx-900 font-semibold" : ""}`}
+                    >
+                      {t}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Author dropdown */}
+            <div className="relative" ref={authorRef}>
+              <button onClick={() => { setAuthorOpen(!authorOpen); setThemeOpen(false); }} className={dropdownBtnClass}>
+                {activeAuthor} <ChevronDown size={12} className={`transition-transform ${authorOpen ? "rotate-180" : ""}`} />
+              </button>
+              {authorOpen && (
+                <div className={dropdownMenuClass}>
+                  {uniqueAuthors.map((a) => (
+                    <button
+                      key={a}
+                      onClick={() => { setActiveAuthor(a); setAuthorOpen(false); }}
+                      className={`${dropdownItemClass} ${activeAuthor === a ? "bg-surface-warm text-bx-900 font-semibold" : ""}`}
+                    >
+                      {a}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
@@ -131,12 +185,12 @@ const ArtigosPage = () => {
         <div className="max-w-[1120px] mx-auto px-[clamp(16px,4vw,48px)]">
           {filtered.length === 0 ? (
             <div className="py-20 text-center">
-              <p className="font-body text-gy-400 text-lg">Nenhum artigo encontrado nesta categoria.</p>
+              <p className="font-body text-gy-400 text-lg">Nenhum artigo encontrado com esses filtros.</p>
               <button
-                onClick={() => setActiveCategory("Todos")}
+                onClick={() => { setActiveTheme("Todos os temas"); setActiveAuthor("Todos os autores"); }}
                 className="font-display text-[0.5rem] tracking-[0.14em] uppercase text-bx-700 mt-4 hover:text-bx-600 transition-colors"
               >
-                Ver todos os artigos →
+                Limpar filtros →
               </button>
             </div>
           ) : (

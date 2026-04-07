@@ -5,7 +5,7 @@ import SiteFooter from "@/components/SiteFooter";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import podcastCover from "@/assets/podcast-cover.jpg";
 
-const categories = ["Todos", "Podcast", "Vídeo", "Entrevista"];
+const categories = ["Mais recentes", "Mais vistos"];
 
 const allEpisodes = [
   {
