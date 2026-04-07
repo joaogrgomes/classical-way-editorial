@@ -6,6 +6,7 @@ import ArticlesSection from "@/components/ArticlesSection";
 import FeaturedPodcast from "@/components/FeaturedPodcast";
 import PodcastSection from "@/components/PodcastSection";
 import EssaysSection from "@/components/EssaysSection";
+import BookReviewSection from "@/components/BookReviewSection";
 import QuoteBand from "@/components/QuoteBand";
 import NewsletterBanner from "@/components/NewsletterBanner";
 import SiteFooter from "@/components/SiteFooter";
@@ -23,6 +24,7 @@ const Index = () => {
       <FeaturedPodcast />
       <PodcastSection />
       <EssaysSection />
+      <BookReviewSection />
       <QuoteBand />
       <HeroBanner />
       <NewsletterBanner />
