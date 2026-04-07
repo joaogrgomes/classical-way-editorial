@@ -188,17 +188,7 @@ const PodcastPage = () => {
       {/* Episodes grid */}
       <section className="py-12 lg:py-16">
         <div className="max-w-[1120px] mx-auto px-[clamp(16px,4vw,48px)]">
-          {filtered.length === 0 ? (
-            <div className="py-20 text-center">
-              <p className="font-body text-gy-400 text-lg">Nenhum episódio encontrado nesta categoria.</p>
-              <button
-                onClick={() => setActiveCategory("Todos")}
-                className="font-display text-[0.5rem] tracking-[0.14em] uppercase text-bx-700 mt-4 hover:text-bx-600 transition-colors"
-              >
-                Ver todos →
-              </button>
-            </div>
-          ) : (
+          {visible.length > 0 && (
             <>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {visible.map((ep) => (
