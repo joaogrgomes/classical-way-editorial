@@ -1,17 +1,61 @@
 import { useState } from "react";
-import { Search, Menu, X } from "lucide-react";
+import { Search, Menu, X, ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
 
-const navItems = [
-  { label: "Sobre", href: "/sobre" },
-  { label: "Artigos", href: "/artigos" },
+type NavItem = {
+  label: string;
+  href?: string;
+  children?: { label: string; href: string }[];
+};
+
+const navItems: NavItem[] = [
+  {
+    label: "Artigos",
+    children: [
+      { label: "Sala de Aula", href: "/artigos?cat=sala-de-aula" },
+      { label: "Família", href: "/artigos?cat=familia" },
+      { label: "Trivium", href: "/artigos?cat=trivium" },
+      { label: "Quadrivium", href: "/artigos?cat=quadrivium" },
+      { label: "Arte & Cultura", href: "/artigos?cat=arte-cultura" },
+      { label: "Teologia & Pedagogia", href: "/artigos?cat=teologia-pedagogia" },
+      { label: "Negócios & Marketing", href: "/artigos?cat=negocios-marketing" },
+      { label: "Gestão", href: "/artigos?cat=gestao" },
+    ],
+  },
+  {
+    label: "Colunas",
+    children: [
+      { label: "Colunista 1", href: "/colunas/colunista-1" },
+      { label: "Colunista 2", href: "/colunas/colunista-2" },
+      { label: "Colunista 3", href: "/colunas/colunista-3" },
+      { label: "Indicações", href: "/colunas/indicacoes" },
+    ],
+  },
+  { label: "Resenhas", href: "/resenhas" },
+  { label: "Recursos", href: "/recursos" },
   { label: "Podcasts", href: "/podcasts" },
-  { label: "Ensaios", href: "/ensaios" },
-  { label: "Contato", href: "#contato" },
+  { label: "Eventos", href: "#eventos" },
+  { label: "Sobre", href: "/sobre" },
 ];
 
 const SiteHeader = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
+
+  const linkClass =
+    "font-display text-[0.5rem] tracking-[0.14em] uppercase text-bx-700 px-3.5 py-2.5 transition-colors duration-200 hover:text-gd-500";
+
+  const renderLink = (href: string, label: string, className: string, onClick?: () => void) =>
+    href.startsWith("/") ? (
+      <Link to={href} className={className} onClick={onClick}>
+        {label}
+      </Link>
+    ) : (
+      <a href={href} className={className} onClick={onClick}>
+        {label}
+      </a>
+    );
 
   return (
     <header className="sticky top-0 z-50 bg-background border-b border-gy-100 shadow-[0_2px_16px_rgba(0,0,0,0.08)]">
@@ -46,22 +90,33 @@ const SiteHeader = () => {
         {/* Desktop nav */}
         <nav className="hidden lg:flex items-center gap-0" aria-label="Navegação principal">
           {navItems.map((item) =>
-            item.href.startsWith("/") ? (
-              <Link
+            item.children ? (
+              <div
                 key={item.label}
-                to={item.href}
-                className="font-display text-[0.5rem] tracking-[0.14em] uppercase text-bx-700 px-3.5 py-2.5 transition-colors duration-200 hover:text-gd-500"
+                className="relative"
+                onMouseEnter={() => setOpenDropdown(item.label)}
+                onMouseLeave={() => setOpenDropdown(null)}
               >
-                {item.label}
-              </Link>
+                <button className={`${linkClass} flex items-center gap-1`}>
+                  {item.label}
+                  <ChevronDown size={10} className={`transition-transform ${openDropdown === item.label ? "rotate-180" : ""}`} />
+                </button>
+                {openDropdown === item.label && (
+                  <div className="absolute top-full left-0 bg-background border border-gy-100 shadow-[0_8px_24px_rgba(0,0,0,0.08)] py-1 min-w-[180px] z-50">
+                    {item.children.map((child) => (
+                      <Link
+                        key={child.label}
+                        to={child.href}
+                        className="font-display text-[0.48rem] tracking-[0.14em] uppercase text-bx-700 px-5 py-2.5 hover:bg-surface-warm hover:text-bx-900 block whitespace-nowrap transition-colors"
+                      >
+                        {child.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
             ) : (
-              <a
-                key={item.label}
-                href={item.href}
-                className="font-display text-[0.5rem] tracking-[0.14em] uppercase text-bx-700 px-3.5 py-2.5 transition-colors duration-200 hover:text-gd-500"
-              >
-                {item.label}
-              </a>
+              renderLink(item.href!, item.label, linkClass, undefined)
             )
           )}
         </nav>
@@ -84,24 +139,39 @@ const SiteHeader = () => {
       {mobileOpen && (
         <nav className="lg:hidden bg-gy-100 border-t border-bx-900/10 py-4 px-[clamp(16px,4vw,48px)]">
           {navItems.map((item) =>
-            item.href.startsWith("/") ? (
-              <Link
-                key={item.label}
-                to={item.href}
-                className="block font-display text-[0.56rem] tracking-[0.14em] uppercase text-bx-700 py-2.5 hover:text-gd-500 transition-colors"
-                onClick={() => setMobileOpen(false)}
-              >
-                {item.label}
-              </Link>
+            item.children ? (
+              <div key={item.label}>
+                <button
+                  className="w-full flex items-center justify-between font-display text-[0.56rem] tracking-[0.14em] uppercase text-bx-700 py-2.5 hover:text-gd-500 transition-colors"
+                  onClick={() => setMobileExpanded(mobileExpanded === item.label ? null : item.label)}
+                >
+                  {item.label}
+                  <ChevronDown size={12} className={`transition-transform ${mobileExpanded === item.label ? "rotate-180" : ""}`} />
+                </button>
+                {mobileExpanded === item.label && (
+                  <div className="pl-4 pb-2">
+                    {item.children.map((child) => (
+                      <Link
+                        key={child.label}
+                        to={child.href}
+                        className="block font-display text-[0.5rem] tracking-[0.14em] uppercase text-gy-500 py-2 hover:text-bx-700 transition-colors"
+                        onClick={() => setMobileOpen(false)}
+                      >
+                        {child.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
             ) : (
-              <a
-                key={item.label}
-                href={item.href}
-                className="block font-display text-[0.56rem] tracking-[0.14em] uppercase text-bx-700 py-2.5 hover:text-gd-500 transition-colors"
-                onClick={() => setMobileOpen(false)}
-              >
-                {item.label}
-              </a>
+              <div key={item.label}>
+                {renderLink(
+                  item.href!,
+                  item.label,
+                  "block font-display text-[0.56rem] tracking-[0.14em] uppercase text-bx-700 py-2.5 hover:text-gd-500 transition-colors",
+                  () => setMobileOpen(false)
+                )}
+              </div>
             )
           )}
         </nav>
