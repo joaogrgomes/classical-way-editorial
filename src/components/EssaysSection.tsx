@@ -42,7 +42,7 @@ const EssaysSection = () => (
             Ensaios Fundamentais
           </span>
         </div>
-        <a href="/ensaios" className="font-display text-[0.5rem] tracking-[0.14em] uppercase text-white/35 hover:text-gd-500 transition-colors">
+        <a href="/ensaios" className="font-display text-[0.6rem] tracking-[0.14em] uppercase text-white/35 hover:text-gd-500 transition-colors">
           Ver biblioteca →
         </a>
       </div>
@@ -57,10 +57,10 @@ const EssaysSection = () => (
             key={essay.num}
             className="bg-white/[0.04] border border-white/[0.07] p-7 cursor-pointer transition-all duration-200 hover:bg-white/[0.07] hover:border-gd-600/30"
           >
-            <p className="font-display text-[0.5rem] tracking-[0.22em] uppercase text-gd-700 mb-3">
+            <p className="font-display text-[0.6rem] tracking-[0.22em] uppercase text-gd-700 mb-3">
               {essay.num}
             </p>
-            <h3 className="font-heading text-[1.1rem] font-semibold text-white/[0.88] mb-2.5">
+            <h3 className="font-heading text-[1.32rem] font-semibold text-white/[0.88] mb-2.5">
               {essay.title}
             </h3>
             <p className="font-body text-[0.9rem] text-white/[0.42] leading-[1.65]">

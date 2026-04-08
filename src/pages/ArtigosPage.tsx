@@ -109,13 +109,13 @@ const ArtigosPage = () => {
   });
 
   const dropdownBtnClass =
-    "border border-gy-200 text-gy-700 font-display text-[0.48rem] tracking-[0.14em] uppercase px-4 py-2 flex items-center gap-2 hover:border-gy-400 transition-colors";
+    "border border-gy-200 text-gy-700 font-display text-[0.58rem] tracking-[0.14em] uppercase px-4 py-2 flex items-center gap-2 hover:border-gy-400 transition-colors";
 
   const dropdownMenuClass =
     "absolute top-full left-0 mt-1 bg-background border border-gy-100 shadow-[0_4px_16px_rgba(0,0,0,0.08)] z-50 min-w-[200px]";
 
   const dropdownItemClass =
-    "px-4 py-2.5 font-display text-[0.48rem] tracking-[0.14em] uppercase text-gy-700 hover:bg-surface-warm cursor-pointer block w-full text-left transition-colors";
+    "px-4 py-2.5 font-display text-[0.58rem] tracking-[0.14em] uppercase text-gy-700 hover:bg-surface-warm cursor-pointer block w-full text-left transition-colors";
 
   return (
     <div className="min-h-screen bg-background">
@@ -124,10 +124,10 @@ const ArtigosPage = () => {
       {/* Page header */}
       <div className="bg-bx-900 py-14 lg:py-20">
         <div className="max-w-[1120px] mx-auto px-[clamp(16px,4vw,48px)]">
-          <h1 className="font-heading text-[clamp(1.8rem,4vw,2.8rem)] italic font-semibold text-white/[0.92] leading-[1.15] mb-3">
+          <h1 className="font-heading text-[clamp(2.16rem,4.8vw,3.36rem)] italic font-semibold text-white/[0.92] leading-[1.15] mb-3">
             Artigos
           </h1>
-          <p className="font-body text-[1.05rem] text-white/[0.45] max-w-[52ch] leading-[1.7]">
+          <p className="font-body text-[1.26rem] text-white/[0.45] max-w-[52ch] leading-[1.7]">
             Reflexões sobre educação clássica, formação cristã e a herança intelectual do Ocidente.
           </p>
         </div>
@@ -188,7 +188,7 @@ const ArtigosPage = () => {
               <p className="font-body text-gy-400 text-lg">Nenhum artigo encontrado com esses filtros.</p>
               <button
                 onClick={() => { setActiveTheme("Todos os temas"); setActiveAuthor("Todos os autores"); }}
-                className="font-display text-[0.5rem] tracking-[0.14em] uppercase text-bx-700 mt-4 hover:text-bx-600 transition-colors"
+                className="font-display text-[0.6rem] tracking-[0.14em] uppercase text-bx-700 mt-4 hover:text-bx-600 transition-colors"
               >
                 Limpar filtros →
               </button>
@@ -205,18 +205,18 @@ const ArtigosPage = () => {
                       loading="lazy"
                     />
                   </div>
-                  <span className="font-display text-[0.44rem] tracking-[0.16em] uppercase text-bx-600 font-semibold mb-2 block">
+                  <span className="font-display text-[0.53rem] tracking-[0.16em] uppercase text-bx-600 font-semibold mb-2 block">
                     {article.category}
                   </span>
-                  <h2 className="font-heading text-[1.15rem] font-semibold italic text-gy-900 leading-[1.25] mb-2 group-hover:text-bx-700 transition-colors">
+                  <h2 className="font-heading text-[1.38rem] font-semibold italic text-gy-900 leading-[1.25] mb-2 group-hover:text-bx-700 transition-colors">
                     {article.title}
                   </h2>
-                  <p className="font-body text-[0.92rem] text-gy-500 leading-[1.65] mb-3">
+                  <p className="font-body text-[1.32rem] text-gy-500 leading-[1.65] mb-3">
                     {article.excerpt}
                   </p>
                   <div className="flex justify-between items-center">
-                    <span className="font-display text-[0.46rem] tracking-[0.12em] uppercase text-gy-400">{article.author}</span>
-                    <span className="font-display text-[0.46rem] tracking-[0.1em] uppercase text-gy-300">{article.date}</span>
+                    <span className="font-display text-[0.55rem] tracking-[0.12em] uppercase text-gy-400">{article.author}</span>
+                    <span className="font-display text-[0.55rem] tracking-[0.1em] uppercase text-gy-300">{article.date}</span>
                   </div>
                 </Link>
               ))}

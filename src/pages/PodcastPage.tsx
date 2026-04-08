@@ -116,10 +116,10 @@ const PodcastPage = () => {
           <div className="flex flex-col md:flex-row gap-8 lg:gap-12 items-center md:items-start">
             {/* Info */}
             <div className="flex-1 order-2 md:order-1">
-              <h1 className="font-heading text-[clamp(1.8rem,4vw,2.8rem)] italic font-semibold text-white/[0.92] leading-[1.15] mb-3">
+              <h1 className="font-heading text-[clamp(2.16rem,4.8vw,3.36rem)] italic font-semibold text-white/[0.92] leading-[1.15] mb-3">
                 Classical Founders
               </h1>
-              <p className="font-body text-[1.05rem] text-white/[0.45] max-w-[480px] leading-[1.7] mb-6">
+              <p className="font-body text-[1.26rem] text-white/[0.45] max-w-[480px] leading-[1.7] mb-6">
                 Conversas semanais sobre educação clássica, artes liberais e formação cristã. Porque ensinar é uma vocação que exige sabedoria.
               </p>
 
@@ -128,21 +128,21 @@ const PodcastPage = () => {
                 <div className="relative" ref={subRef}>
                   <button
                     onClick={() => setSubOpen(!subOpen)}
-                    className="bg-gd-700 text-white font-display text-[0.5rem] tracking-[0.16em] uppercase px-4 py-2 flex items-center gap-2 transition-colors hover:bg-gd-600"
+                    className="bg-gd-700 text-white font-display text-[0.6rem] tracking-[0.16em] uppercase px-4 py-2 flex items-center gap-2 transition-colors hover:bg-gd-600"
                   >
                     Inscrever-se <ChevronDown size={12} />
                   </button>
                   {subOpen && (
                     <div className="absolute top-full left-0 mt-1 bg-gy-900 text-white z-20 min-w-[180px]">
                       {["Apple Podcasts", "Spotify", "RSS"].map((p) => (
-                        <a key={p} href="#" className="flex items-center gap-2 py-2 px-4 font-display text-[0.5rem] tracking-[0.14em] uppercase hover:bg-gy-700 cursor-pointer transition-colors">
+                        <a key={p} href="#" className="flex items-center gap-2 py-2 px-4 font-display text-[0.6rem] tracking-[0.14em] uppercase hover:bg-gy-700 cursor-pointer transition-colors">
                           <ExternalLink size={12} /> {p}
                         </a>
                       ))}
                     </div>
                   )}
                 </div>
-                <a href="#" className="font-display text-[0.5rem] tracking-[0.14em] uppercase text-white/[0.45] hover:text-white/[0.7] transition-colors flex items-center gap-2">
+                <a href="#" className="font-display text-[0.6rem] tracking-[0.14em] uppercase text-white/[0.45] hover:text-white/[0.7] transition-colors flex items-center gap-2">
                   <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
                   Assistir no YouTube
                 </a>
@@ -172,7 +172,7 @@ const PodcastPage = () => {
               <button
                 key={cat}
                 onClick={() => { setActiveCategory(cat); setVisibleCount(ITEMS_PER_PAGE); }}
-                className={`font-display text-[0.5rem] tracking-[0.14em] uppercase whitespace-nowrap px-4 py-3.5 border-b-2 transition-colors duration-200 ${
+                className={`font-display text-[0.6rem] tracking-[0.14em] uppercase whitespace-nowrap px-4 py-3.5 border-b-2 transition-colors duration-200 ${
                   activeCategory === cat
                     ? "border-bx-700 text-bx-700 font-semibold"
                     : "border-transparent text-gy-400 hover:text-gy-700"
@@ -201,7 +201,7 @@ const PodcastPage = () => {
                         loading="lazy"
                       />
                       <div className="absolute inset-0 bg-bx-900/40" />
-                      <span className="absolute top-2 left-2 font-display text-[0.42rem] tracking-[0.14em] uppercase bg-bx-700 text-white px-2 py-[2px] z-10">
+                      <span className="absolute top-2 left-2 font-display text-[0.6rem] tracking-[0.14em] uppercase bg-bx-700 text-white px-2 py-[2px] z-10">
                         {ep.type}
                       </span>
                       <div className="absolute inset-0 flex items-center justify-center z-10">
@@ -211,13 +211,13 @@ const PodcastPage = () => {
                       </div>
                     </div>
                     <div className="flex-1 py-1">
-                      <h2 className="font-heading text-[1.05rem] font-semibold italic text-gy-900 leading-[1.3] mb-2 group-hover:text-bx-700 transition-colors">
+                      <h2 className="font-heading text-[1.26rem] font-semibold italic text-gy-900 leading-[1.3] mb-2 group-hover:text-bx-700 transition-colors">
                         {ep.title}
                       </h2>
-                      <p className="font-body text-[0.88rem] text-gy-500 leading-[1.6] mb-3 line-clamp-2">
+                      <p className="font-body text-[1.06rem] text-gy-500 leading-[1.6] mb-3 line-clamp-2">
                         {ep.desc}
                       </p>
-                      <div className="font-display text-[0.46rem] tracking-[0.1em] uppercase text-gy-400 flex gap-2 flex-wrap">
+                      <div className="font-display text-[0.55rem] tracking-[0.1em] uppercase text-gy-400 flex gap-2 flex-wrap">
                         <span>{ep.duration}</span>
                         <span className="text-gy-200">·</span>
                         <span>{ep.date}</span>
@@ -233,7 +233,7 @@ const PodcastPage = () => {
                 <div className="text-center mt-10">
                   <button
                     onClick={() => setVisibleCount((c) => c + ITEMS_PER_PAGE)}
-                    className="font-display text-[0.5rem] tracking-[0.16em] uppercase border border-gy-200 text-gy-600 px-6 py-[9px] hover:border-gy-400 hover:text-gy-800 transition-colors"
+                    className="font-display text-[0.6rem] tracking-[0.16em] uppercase border border-gy-200 text-gy-600 px-6 py-[9px] hover:border-gy-400 hover:text-gy-800 transition-colors"
                   >
                     Carregar mais episódios
                   </button>

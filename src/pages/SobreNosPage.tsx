@@ -18,7 +18,7 @@ const SobreNosPage = () => (
         <h1 className="font-heading italic text-[clamp(2rem,5vw,3rem)] text-white mb-4">
           Sobre Nós
         </h1>
-        <p className="font-body text-[1.1rem] text-white/60 leading-[1.8] max-w-[52ch] mx-auto">
+        <p className="font-body text-[1.32rem] text-white/60 leading-[1.8] max-w-[52ch] mx-auto">
           Somos um portal editorial dedicado à Educação Cristã Clássica — guiando famílias e educadores no caminho da sabedoria.
         </p>
       </div>
@@ -30,7 +30,7 @@ const SobreNosPage = () => (
         <h2 className="font-heading text-[clamp(1.4rem,3vw,1.8rem)] text-bx-900 mb-6">
           Nossa Missão
         </h2>
-        <p className="font-body text-[1.05rem] text-gy-700 leading-[1.85]">
+        <p className="font-body text-[1.26rem] text-gy-700 leading-[1.85]">
           Nossa missão é guiar famílias e educadores no caminho da sabedoria, ajudando-os a dar os primeiros passos — e a aprofundar-se — na Educação Cristã Clássica. Promovemos o ensino como formação da alma, oferecendo recursos e referências confiáveis que unem o Trivium e o Quadrivium à fé cristã reformada.
         </p>
       </div>
@@ -46,7 +46,7 @@ const SobreNosPage = () => (
           {beliefs.map((item, i) => (
             <li key={i} className="flex items-start gap-4">
               <span className="w-[3px] min-h-[24px] self-stretch bg-gd-600 mt-1" />
-              <p className="font-body text-[1.05rem] text-gy-700 leading-[1.8]">{item}</p>
+              <p className="font-body text-[1.26rem] text-gy-700 leading-[1.8]">{item}</p>
             </li>
           ))}
         </ul>
@@ -59,7 +59,7 @@ const SobreNosPage = () => (
         <h2 className="font-heading text-[clamp(1.4rem,3vw,1.8rem)] text-bx-900 mb-6">
           Declaração de Fé
         </h2>
-        <p className="font-body text-[1.05rem] text-gy-700 leading-[1.85]">
+        <p className="font-body text-[1.26rem] text-gy-700 leading-[1.85]">
           Somos uma publicação confessional, comprometida com a fé cristã histórica tal como expressa nas grandes confissões reformadas. Todo conteúdo publicado aqui reflete esse compromisso.
         </p>
       </div>
@@ -71,7 +71,7 @@ const SobreNosPage = () => (
         <h2 className="font-heading text-[clamp(1.4rem,3vw,1.8rem)] text-bx-900 mb-6">
           Nossa Equipe
         </h2>
-        <p className="font-body text-[1.05rem] text-gy-500 leading-[1.85] italic">
+        <p className="font-body text-[1.26rem] text-gy-500 leading-[1.85] italic">
           Em breve apresentaremos os colaboradores e editores do Classical Way.
         </p>
       </div>

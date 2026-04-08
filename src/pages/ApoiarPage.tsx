@@ -27,13 +27,13 @@ const ApoiarPage = () => {
       {/* Hero */}
       <section className="bg-bx-900 py-20 lg:py-28">
         <div className="max-w-[780px] mx-auto px-[clamp(16px,4vw,48px)] text-center">
-          <span className="font-display text-[0.52rem] tracking-[0.24em] uppercase text-gd-500 mb-4 block">
+          <span className="font-display text-[0.62rem] tracking-[0.24em] uppercase text-gd-500 mb-4 block">
             Apoiar a Missão
           </span>
           <h1 className="font-heading text-[clamp(1.8rem,4.5vw,3rem)] italic font-bold text-white/95 leading-[1.12] mb-6">
             Sustente a Difusão da Verdade, da Beleza e do Bem
           </h1>
-          <p className="font-body text-[1.1rem] text-white/55 leading-[1.75] max-w-[58ch] mx-auto">
+          <p className="font-body text-[1.32rem] text-white/55 leading-[1.75] max-w-[58ch] mx-auto">
             A Classical Way existe para oferecer conteúdo intelectual profundo, gratuito e acessível. Sua contribuição nos permite continuar publicando artigos, produzindo podcasts e cultivando uma comunidade dedicada à educação clássica e à formação da alma.
           </p>
         </div>
@@ -43,7 +43,7 @@ const ApoiarPage = () => {
       <section className="py-16 lg:py-20 border-b border-gy-100">
         <div className="max-w-[1120px] mx-auto px-[clamp(16px,4vw,48px)]">
           <div className="text-center mb-12">
-            <span className="font-display text-[0.5rem] tracking-[0.22em] uppercase text-bx-700 block mb-3">
+            <span className="font-display text-[0.6rem] tracking-[0.22em] uppercase text-bx-700 block mb-3">
               Escolha Como Contribuir
             </span>
             <h2 className="font-heading text-[clamp(1.4rem,3vw,2rem)] italic font-bold text-gy-900 leading-[1.15]">
@@ -57,23 +57,23 @@ const ApoiarPage = () => {
                 key={tier.label}
                 className="border border-gy-100 p-6 flex flex-col items-center text-center hover:border-gd-600 transition-colors group"
               >
-                <span className="font-display text-[0.46rem] tracking-[0.2em] uppercase text-gd-600 mb-2">
+                <span className="font-display text-[0.55rem] tracking-[0.2em] uppercase text-gd-600 mb-2">
                   {tier.label}
                 </span>
                 <span className="font-heading text-[2rem] italic font-bold text-gy-900 mb-3">
                   {tier.amount}
                 </span>
-                <p className="font-body text-[0.88rem] text-gy-500 leading-[1.6] mb-6 flex-1">
+                <p className="font-body text-[1.06rem] text-gy-500 leading-[1.6] mb-6 flex-1">
                   {tier.description}
                 </p>
-                <button className="w-full font-display text-[0.5rem] tracking-[0.16em] uppercase bg-bx-900 text-white py-3 hover:bg-bx-700 transition-colors group-hover:bg-gd-700">
+                <button className="w-full font-display text-[0.6rem] tracking-[0.16em] uppercase bg-bx-900 text-white py-3 hover:bg-bx-700 transition-colors group-hover:bg-gd-700">
                   Contribuir
                 </button>
               </div>
             ))}
           </div>
 
-          <p className="text-center font-body text-[0.88rem] text-gy-400 mt-8">
+          <p className="text-center font-body text-[1.06rem] text-gy-400 mt-8">
             Deseja contribuir com outro valor?{" "}
             <a href="#contato" className="text-bx-700 underline underline-offset-2 hover:text-gd-600 transition-colors">
               Entre em contato conosco
@@ -86,7 +86,7 @@ const ApoiarPage = () => {
       <section className="py-16 lg:py-20 bg-pg-100 border-b border-gy-100">
         <div className="max-w-[1120px] mx-auto px-[clamp(16px,4vw,48px)]">
           <div className="text-center mb-12">
-            <span className="font-display text-[0.5rem] tracking-[0.22em] uppercase text-bx-700 block mb-3">
+            <span className="font-display text-[0.6rem] tracking-[0.22em] uppercase text-bx-700 block mb-3">
               O Impacto do Seu Apoio
             </span>
             <h2 className="font-heading text-[clamp(1.2rem,2.5vw,1.6rem)] italic font-bold text-gy-900 leading-[1.2] max-w-[50ch] mx-auto">
@@ -112,7 +112,7 @@ const ApoiarPage = () => {
       {/* Final CTA */}
       <section className="py-16 lg:py-20">
         <div className="max-w-[680px] mx-auto px-[clamp(16px,4vw,48px)] text-center">
-          <h2 className="font-heading text-[clamp(1.3rem,3vw,1.8rem)] italic font-bold text-gy-900 leading-[1.2] mb-4">
+          <h2 className="font-heading text-[clamp(1.56rem,3.6vw,2.16rem)] italic font-bold text-gy-900 leading-[1.2] mb-4">
             A verdadeira educação é um bem comum.
             <br />
             Ajude-nos a oferecê-la.
@@ -122,7 +122,7 @@ const ApoiarPage = () => {
           </p>
           <Link
             to="#"
-            className="inline-block font-display text-[0.52rem] tracking-[0.16em] uppercase bg-gd-700 text-white px-8 py-3 hover:bg-gd-600 transition-colors"
+            className="inline-block font-display text-[0.62rem] tracking-[0.16em] uppercase bg-gd-700 text-white px-8 py-3 hover:bg-gd-600 transition-colors"
           >
             Contribuir Agora →
           </Link>
