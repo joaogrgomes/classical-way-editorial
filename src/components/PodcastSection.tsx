@@ -38,7 +38,7 @@ const PodcastSection = () => (
             Podcasts e Vídeos
           </span>
         </div>
-        <Link to="/podcasts" className="font-display text-[0.5rem] tracking-[0.14em] uppercase text-gy-300 hover:text-bx-700 transition-colors">
+        <Link to="/podcasts" className="font-display text-[0.6rem] tracking-[0.14em] uppercase text-gy-300 hover:text-bx-700 transition-colors">
           Ver todos →
         </Link>
       </div>
@@ -54,7 +54,7 @@ const PodcastSection = () => (
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-bx-900/48" />
-              <span className="absolute top-2.5 left-2.5 font-display text-[0.44rem] tracking-[0.14em] uppercase bg-bx-700 text-white px-2 py-[3px] z-10">
+              <span className="absolute top-2.5 left-2.5 font-display text-[0.53rem] tracking-[0.14em] uppercase bg-bx-700 text-white px-2 py-[3px] z-10">
                 {ep.type}
               </span>
               <div className="absolute z-10 w-12 h-12 rounded-full bg-gd-600/90 flex items-center justify-center group-hover:scale-110 group-hover:bg-gd-500 transition-all">
@@ -65,7 +65,7 @@ const PodcastSection = () => (
               <p className="font-heading text-base font-semibold italic text-gy-900 leading-[1.3] mb-2">
                 {ep.title}
               </p>
-              <div className="font-display text-[0.52rem] tracking-[0.1em] uppercase text-gy-400 flex gap-2.5 flex-wrap">
+              <div className="font-display text-[0.62rem] tracking-[0.1em] uppercase text-gy-400 flex gap-2.5 flex-wrap">
                 <span>{ep.duration}</span>
                 <span>·</span>
                 <span>{ep.date}</span>

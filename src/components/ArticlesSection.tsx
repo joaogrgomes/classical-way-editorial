@@ -44,7 +44,7 @@ const ArticlesSection = () => (
             Artigos Recentes
           </span>
         </div>
-        <Link to="/artigos" className="font-display text-[0.5rem] tracking-[0.14em] uppercase text-gy-300 hover:text-bx-700 transition-colors flex items-center gap-1.5">
+        <Link to="/artigos" className="font-display text-[0.6rem] tracking-[0.14em] uppercase text-gy-300 hover:text-bx-700 transition-colors flex items-center gap-1.5">
           Ver todos →
         </Link>
       </div>
@@ -63,18 +63,18 @@ const ArticlesSection = () => (
                     loading="lazy"
                   />
                 </div>
-                <span className="font-display text-[0.44rem] tracking-[0.16em] uppercase text-bx-600 font-semibold mb-2">
+                <span className="font-display text-[0.53rem] tracking-[0.16em] uppercase text-bx-600 font-semibold mb-2">
                   {article.category}
                 </span>
-                <h3 className="font-heading text-[1.1rem] font-semibold italic text-gy-900 leading-[1.25] mb-2 group-hover:text-bx-700 transition-colors">
+                <h3 className="font-heading text-[1.32rem] font-semibold italic text-gy-900 leading-[1.25] mb-2 group-hover:text-bx-700 transition-colors">
                   {article.title}
                 </h3>
-                <p className="font-body text-[0.92rem] text-gy-500 leading-[1.65] mb-2.5">
+                <p className="font-body text-[1.32rem] text-gy-500 leading-[1.65] mb-2.5">
                   {article.excerpt}
                 </p>
                 <div className="flex justify-between items-center mt-auto">
-                  <span className="font-display text-[0.46rem] tracking-[0.12em] uppercase text-gy-400">{article.author}</span>
-                  <span className="font-display text-[0.46rem] tracking-[0.1em] uppercase text-gy-300">{article.date}</span>
+                  <span className="font-display text-[0.55rem] tracking-[0.12em] uppercase text-gy-400">{article.author}</span>
+                  <span className="font-display text-[0.55rem] tracking-[0.1em] uppercase text-gy-300">{article.date}</span>
                 </div>
               </article>
             ))}
@@ -83,7 +83,7 @@ const ArticlesSection = () => (
 
         {/* Sidebar list */}
         <aside className="border-t-2 border-gy-900 pt-4">
-          <span className="font-display text-[0.5rem] tracking-[0.22em] uppercase text-gy-900 font-semibold mb-4 block">
+          <span className="font-display text-[0.6rem] tracking-[0.22em] uppercase text-gy-900 font-semibold mb-4 block">
             Mais Lidos
           </span>
           {sideArticles.map((a, i) => (
@@ -92,8 +92,8 @@ const ArticlesSection = () => (
                 {i + 1}
               </span>
               <div>
-                <span className="font-display text-[0.46rem] tracking-[0.14em] uppercase text-gy-400 mb-1 block">{a.category}</span>
-                <span className="font-heading text-[0.92rem] font-semibold text-gy-800 leading-[1.25]">{a.title}</span>
+                <span className="font-display text-[0.55rem] tracking-[0.14em] uppercase text-gy-400 mb-1 block">{a.category}</span>
+                <span className="font-heading text-[1.32rem] font-semibold text-gy-800 leading-[1.25]">{a.title}</span>
               </div>
             </article>
           ))}

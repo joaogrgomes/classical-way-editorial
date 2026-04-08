@@ -35,7 +35,7 @@ const SiteFooter = () => (
               <a
                 key={s}
                 href="#"
-                className="w-8 h-8 flex items-center justify-center font-display text-[0.42rem] tracking-[0.08em] uppercase text-white/30 border border-white/10 hover:text-gd-500 hover:border-gd-700 transition-colors"
+                className="w-8 h-8 flex items-center justify-center font-display text-[0.6rem] tracking-[0.08em] uppercase text-white/30 border border-white/10 hover:text-gd-500 hover:border-gd-700 transition-colors"
               >
                 {s}
               </a>
@@ -47,13 +47,13 @@ const SiteFooter = () => (
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-8">
           {footerCols.map((col) => (
             <div key={col.title}>
-              <p className="font-display text-[0.46rem] tracking-[0.2em] uppercase text-white/30 mb-4">
+              <p className="font-display text-[0.55rem] tracking-[0.2em] uppercase text-white/30 mb-4">
                 {col.title}
               </p>
               <ul className="space-y-2.5">
                 {col.links.map((link) => (
                   <li key={link}>
-                    <a href="#" className="font-body text-[0.88rem] text-white/40 hover:text-gd-500 transition-colors">
+                    <a href="#" className="font-body text-[1.06rem] text-white/40 hover:text-gd-500 transition-colors">
                       {link}
                     </a>
                   </li>
@@ -66,10 +66,10 @@ const SiteFooter = () => (
 
       {/* Bottom */}
       <div className="border-t border-white/[0.06] pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p className="font-display text-[0.42rem] tracking-[0.12em] uppercase text-white/20">
+        <p className="font-display text-[0.6rem] tracking-[0.12em] uppercase text-white/20">
           © 2026 The Classical Way. Todos os direitos reservados.
         </p>
-        <p className="font-display text-[0.46rem] tracking-[0.22em] uppercase text-gd-700/60 italic">
+        <p className="font-display text-[0.55rem] tracking-[0.22em] uppercase text-gd-700/60 italic">
           Soli Deo Gloria
         </p>
       </div>

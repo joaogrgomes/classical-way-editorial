@@ -12,7 +12,7 @@ const NewsletterBanner = () => {
     <section className="bg-bx-900 py-16 border-t-2 border-gd-600" id="contato">
       <div className="max-w-[1120px] mx-auto px-[clamp(16px,4vw,48px)] grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div>
-          <span className="font-display text-[0.52rem] tracking-[0.22em] uppercase text-gd-600 block mb-2">
+          <span className="font-display text-[0.62rem] tracking-[0.22em] uppercase text-gd-600 block mb-2">
             Newsletter Gratuita
           </span>
           <h2 className="font-display text-[clamp(1.4rem,3vw,2rem)] font-bold tracking-[0.06em] uppercase text-white leading-[1.1] mb-4">
@@ -40,12 +40,12 @@ const NewsletterBanner = () => {
             <button
               type="submit"
               disabled={submitted}
-              className="font-display text-[0.5rem] tracking-[0.14em] uppercase bg-gd-700 text-white px-6 py-3 hover:bg-gd-600 transition-colors disabled:bg-emerald-700 disabled:cursor-default whitespace-nowrap"
+              className="font-display text-[0.6rem] tracking-[0.14em] uppercase bg-gd-700 text-white px-6 py-3 hover:bg-gd-600 transition-colors disabled:bg-emerald-700 disabled:cursor-default whitespace-nowrap"
             >
               {submitted ? "✓ Inscrito!" : "Assinar"}
             </button>
           </div>
-          <p className="font-display text-[0.42rem] tracking-[0.1em] uppercase text-white/25">
+          <p className="font-display text-[0.6rem] tracking-[0.1em] uppercase text-white/25">
             Seus dados estão seguros. Cancele quando quiser.
           </p>
         </form>

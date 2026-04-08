@@ -35,6 +35,10 @@ const navItems: NavItem[] = [
   { label: "Recursos", href: "/recursos" },
   { label: "Podcasts", href: "/podcasts" },
   { label: "Eventos", href: "#eventos" },
+  { label: "Vídeos", href: "#videos" },
+  { label: "Cursos", href: "#cursos" },
+  { label: "Book Reviews", href: "/resenhas" },
+  { label: "Newsletters", href: "#newsletters" },
   { label: "Sobre", href: "/sobre" },
 ];
 
@@ -44,7 +48,7 @@ const SiteHeader = () => {
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
 
   const linkClass =
-    "font-display text-[0.5rem] tracking-[0.14em] uppercase text-bx-700 px-3.5 py-2.5 transition-colors duration-200 hover:text-gd-500";
+    "font-display text-[0.6rem] tracking-[0.14em] uppercase text-bx-700 px-3.5 py-2.5 transition-colors duration-200 hover:text-gd-500";
 
   const renderLink = (href: string, label: string, className: string, onClick?: () => void) =>
     href.startsWith("/") ? (
@@ -82,7 +86,7 @@ const SiteHeader = () => {
             <path d="M66 59V76" stroke="#FDFBF8"/>
             <path d="M59 66H74" stroke="#FDFBF8"/>
           </svg>
-          <span className="font-display text-[0.82rem] font-bold tracking-[0.18em] uppercase text-bx-900 leading-none whitespace-nowrap">
+          <span className="font-display text-[0.98rem] font-bold tracking-[0.18em] uppercase text-bx-900 leading-none whitespace-nowrap">
             The Classical Way
           </span>
         </Link>
@@ -107,7 +111,7 @@ const SiteHeader = () => {
                       <Link
                         key={child.label}
                         to={child.href}
-                        className="font-display text-[0.48rem] tracking-[0.14em] uppercase text-bx-700 px-5 py-2.5 hover:bg-surface-warm hover:text-bx-900 block whitespace-nowrap transition-colors"
+                        className="font-display text-[0.58rem] tracking-[0.14em] uppercase text-bx-700 px-5 py-2.5 hover:bg-surface-warm hover:text-bx-900 block whitespace-nowrap transition-colors"
                       >
                         {child.label}
                       </Link>
@@ -128,7 +132,7 @@ const SiteHeader = () => {
           </button>
           <Link
             to="/apoiar"
-            className="hidden sm:block font-display text-[0.5rem] tracking-[0.16em] uppercase bg-gd-700 text-white px-3.5 py-[7px] hover:bg-gd-600 transition-colors"
+            className="hidden sm:block font-display text-[0.6rem] tracking-[0.16em] uppercase bg-gd-700 text-white px-3.5 py-[7px] hover:bg-gd-600 transition-colors"
           >
             Apoiar
           </Link>
@@ -142,7 +146,7 @@ const SiteHeader = () => {
             item.children ? (
               <div key={item.label}>
                 <button
-                  className="w-full flex items-center justify-between font-display text-[0.56rem] tracking-[0.14em] uppercase text-bx-700 py-2.5 hover:text-gd-500 transition-colors"
+                  className="w-full flex items-center justify-between font-display text-[0.67rem] tracking-[0.14em] uppercase text-bx-700 py-2.5 hover:text-gd-500 transition-colors"
                   onClick={() => setMobileExpanded(mobileExpanded === item.label ? null : item.label)}
                 >
                   {item.label}
@@ -154,7 +158,7 @@ const SiteHeader = () => {
                       <Link
                         key={child.label}
                         to={child.href}
-                        className="block font-display text-[0.5rem] tracking-[0.14em] uppercase text-gy-500 py-2 hover:text-bx-700 transition-colors"
+                        className="block font-display text-[0.6rem] tracking-[0.14em] uppercase text-gy-500 py-2 hover:text-bx-700 transition-colors"
                         onClick={() => setMobileOpen(false)}
                       >
                         {child.label}
@@ -168,7 +172,7 @@ const SiteHeader = () => {
                 {renderLink(
                   item.href!,
                   item.label,
-                  "block font-display text-[0.56rem] tracking-[0.14em] uppercase text-bx-700 py-2.5 hover:text-gd-500 transition-colors",
+                  "block font-display text-[0.67rem] tracking-[0.14em] uppercase text-bx-700 py-2.5 hover:text-gd-500 transition-colors",
                   () => setMobileOpen(false)
                 )}
               </div>

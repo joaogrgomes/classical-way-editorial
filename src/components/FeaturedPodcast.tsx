@@ -43,13 +43,13 @@ const FeaturedPodcast = () => {
 
           {/* Info + Player */}
           <div className="flex-1 min-w-0">
-            <span className="font-display text-[0.48rem] tracking-[0.18em] uppercase text-gy-400 block mb-2">
+            <span className="font-display text-[0.58rem] tracking-[0.18em] uppercase text-gy-400 block mb-2">
               Episódio mais recente
             </span>
-            <h3 className="font-heading text-[clamp(1.3rem,3vw,1.8rem)] italic font-semibold text-gy-900 leading-[1.25] mb-3">
+            <h3 className="font-heading text-[clamp(1.56rem,3.6vw,2.16rem)] italic font-semibold text-gy-900 leading-[1.25] mb-3">
               Ep. 42 — Logos e Palavra: linguagem como dom divino na sala de aula clássica
             </h3>
-            <p className="font-body text-[1rem] text-gy-500 leading-[1.7] mb-6 max-w-[540px]">
+            <p className="font-body text-[1.2rem] text-gy-500 leading-[1.7] mb-6 max-w-[540px]">
               Uma conversa sobre como a linguagem — dom de Deus ao homem — deve ser tratada no ensino clássico com reverência e rigor.
             </p>
 
@@ -57,7 +57,7 @@ const FeaturedPodcast = () => {
             <div className="p-5 max-w-[560px]">
               {/* Progress bar */}
               <div className="flex items-center gap-3 mb-4">
-                <span className="font-display text-[0.46rem] tracking-[0.08em] text-gy-400 w-10 text-right tabular-nums">
+                <span className="font-display text-[0.55rem] tracking-[0.08em] text-gy-400 w-10 text-right tabular-nums">
                   {Math.floor(progress * 45)}:{((progress * 45 * 60) % 60).toFixed(0).padStart(2, "0")}
                 </span>
                 <div className="flex-1 h-[3px] bg-gy-100 relative cursor-pointer group" onClick={(e) => {
@@ -73,7 +73,7 @@ const FeaturedPodcast = () => {
                     style={{ left: `${progress * 100}%` }}
                   />
                 </div>
-                <span className="font-display text-[0.46rem] tracking-[0.08em] text-gy-400 w-10 tabular-nums">
+                <span className="font-display text-[0.55rem] tracking-[0.08em] text-gy-400 w-10 tabular-nums">
                   45:00
                 </span>
               </div>
@@ -101,21 +101,21 @@ const FeaturedPodcast = () => {
               <div className="relative" ref={subRef}>
                 <button
                   onClick={() => setSubOpen(!subOpen)}
-                  className="bg-gy-900 text-white font-display text-[0.5rem] tracking-[0.16em] uppercase px-4 py-2 flex items-center gap-2 transition-colors hover:bg-gy-700"
+                  className="bg-gy-900 text-white font-display text-[0.6rem] tracking-[0.16em] uppercase px-4 py-2 flex items-center gap-2 transition-colors hover:bg-gy-700"
                 >
                   Inscrever-se <ChevronDown size={12} />
                 </button>
                 {subOpen && (
                   <div className="absolute top-full left-0 mt-1 bg-gy-900 text-white z-20 min-w-[180px]">
                     {["Apple Podcasts", "Spotify", "RSS"].map((p) => (
-                      <a key={p} href="#" className="flex items-center gap-2 py-2 px-4 font-display text-[0.5rem] tracking-[0.14em] uppercase hover:bg-gy-700 cursor-pointer transition-colors">
+                      <a key={p} href="#" className="flex items-center gap-2 py-2 px-4 font-display text-[0.6rem] tracking-[0.14em] uppercase hover:bg-gy-700 cursor-pointer transition-colors">
                         <ExternalLink size={12} /> {p}
                       </a>
                     ))}
                   </div>
                 )}
               </div>
-              <a href="#" className="font-display text-[0.5rem] tracking-[0.14em] uppercase text-gy-600 hover:text-gy-900 transition-colors flex items-center gap-2">
+              <a href="#" className="font-display text-[0.6rem] tracking-[0.14em] uppercase text-gy-600 hover:text-gy-900 transition-colors flex items-center gap-2">
                 <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
                 Assistir no YouTube
               </a>

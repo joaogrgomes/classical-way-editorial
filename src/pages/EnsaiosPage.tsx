@@ -95,10 +95,10 @@ const EnsaiosPage = () => {
       {/* Page header */}
       <div className="bg-bx-900 py-14 lg:py-20">
         <div className="max-w-[1120px] mx-auto px-[clamp(16px,4vw,48px)]">
-          <h1 className="font-heading text-[clamp(1.8rem,4vw,2.8rem)] italic font-semibold text-white/[0.92] leading-[1.15] mb-3">
+          <h1 className="font-heading text-[clamp(2.16rem,4.8vw,3.36rem)] italic font-semibold text-white/[0.92] leading-[1.15] mb-3">
             Ensaios
           </h1>
-          <p className="font-body text-[1.05rem] text-white/[0.45] max-w-[52ch] leading-[1.7]">
+          <p className="font-body text-[1.26rem] text-white/[0.45] max-w-[52ch] leading-[1.7]">
             Textos longos e densos sobre os fundamentos da educação cristã clássica.
           </p>
         </div>
@@ -112,7 +112,7 @@ const EnsaiosPage = () => {
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`font-display text-[0.5rem] tracking-[0.14em] uppercase whitespace-nowrap px-4 py-3.5 border-b-2 transition-colors duration-200 ${
+                className={`font-display text-[0.6rem] tracking-[0.14em] uppercase whitespace-nowrap px-4 py-3.5 border-b-2 transition-colors duration-200 ${
                   activeCategory === cat
                     ? "border-bx-700 text-bx-700 font-semibold"
                     : "border-transparent text-gy-400 hover:text-gy-700"
@@ -133,7 +133,7 @@ const EnsaiosPage = () => {
               <p className="font-body text-gy-400 text-lg">Nenhum ensaio encontrado nesta categoria.</p>
               <button
                 onClick={() => setActiveCategory("Todos")}
-                className="font-display text-[0.5rem] tracking-[0.14em] uppercase text-bx-700 mt-4 hover:text-bx-600 transition-colors"
+                className="font-display text-[0.6rem] tracking-[0.14em] uppercase text-bx-700 mt-4 hover:text-bx-600 transition-colors"
               >
                 Ver todos os ensaios →
               </button>
@@ -147,7 +147,7 @@ const EnsaiosPage = () => {
                       {essay.num}
                     </span>
                     <div className="flex-1">
-                      <span className="font-display text-[0.44rem] tracking-[0.16em] uppercase text-gd-700 font-semibold mb-2 block">
+                      <span className="font-display text-[0.53rem] tracking-[0.16em] uppercase text-gd-700 font-semibold mb-2 block">
                         {essay.category}
                       </span>
                       <h2 className="font-heading text-[1.25rem] font-semibold italic text-gy-900 leading-[1.25] mb-2.5 group-hover:text-bx-700 transition-colors">
@@ -157,11 +157,11 @@ const EnsaiosPage = () => {
                         {essay.desc}
                       </p>
                       <div className="flex items-center gap-3 flex-wrap">
-                        <span className="font-display text-[0.46rem] tracking-[0.12em] uppercase text-gy-400">{essay.author}</span>
+                        <span className="font-display text-[0.55rem] tracking-[0.12em] uppercase text-gy-400">{essay.author}</span>
                         <span className="text-gy-200">·</span>
-                        <span className="font-display text-[0.46rem] tracking-[0.1em] uppercase text-gy-300">{essay.date}</span>
+                        <span className="font-display text-[0.55rem] tracking-[0.1em] uppercase text-gy-300">{essay.date}</span>
                         <span className="text-gy-200">·</span>
-                        <span className="font-display text-[0.46rem] tracking-[0.1em] uppercase text-gy-300">{essay.readTime}</span>
+                        <span className="font-display text-[0.55rem] tracking-[0.1em] uppercase text-gy-300">{essay.readTime}</span>
                       </div>
                     </div>
                   </div>

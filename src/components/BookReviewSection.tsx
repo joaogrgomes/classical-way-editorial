@@ -35,13 +35,13 @@ const BookReviewSection = () => {
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-3">
             <span className="w-8 h-[3px] bg-bx-700" />
-            <span className="font-display uppercase text-[0.5rem] tracking-[0.18em] text-gy-900">
+            <span className="font-display uppercase text-[0.6rem] tracking-[0.18em] text-gy-900">
               Book Review
             </span>
           </div>
           <Link
             to="/resenhas"
-            className="font-display uppercase text-[0.5rem] tracking-[0.14em] text-bx-700 hover:text-bx-900 transition-colors"
+            className="font-display uppercase text-[0.6rem] tracking-[0.14em] text-bx-700 hover:text-bx-900 transition-colors"
           >
             Ver todas as resenhas →
           </Link>
@@ -53,7 +53,7 @@ const BookReviewSection = () => {
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`font-display uppercase text-[0.5rem] tracking-[0.14em] pb-3 transition-colors ${
+              className={`font-display uppercase text-[0.6rem] tracking-[0.14em] pb-3 transition-colors ${
                 activeCategory === cat
                   ? "border-b-2 border-bx-700 text-bx-700"
                   : "text-gy-400 hover:text-gy-700"
@@ -72,10 +72,10 @@ const BookReviewSection = () => {
               <div className={`relative aspect-[2/3] ${book.coverBg} flex items-center justify-center p-6 mb-4`}>
                 <div className="text-center">
                   <p className="font-heading italic text-white text-lg leading-tight mb-2">{book.title}</p>
-                  <p className="font-display uppercase text-white/60 text-[0.42rem] tracking-[0.14em]">{book.author}</p>
+                  <p className="font-display uppercase text-white/60 text-[0.6rem] tracking-[0.14em]">{book.author}</p>
                 </div>
                 <span
-                  className={`absolute top-3 left-3 px-2 py-0.5 font-display uppercase text-[0.42rem] tracking-[0.1em] text-white ${
+                  className={`absolute top-3 left-3 px-2 py-0.5 font-display uppercase text-[0.6rem] tracking-[0.1em] text-white ${
                     book.badge === "Recomendado" ? "bg-gd-700" : "bg-gy-700"
                   }`}
                 >
@@ -85,20 +85,20 @@ const BookReviewSection = () => {
 
               <StarRating count={book.stars} />
 
-              <span className="font-display uppercase text-bx-600 text-[0.44rem] tracking-[0.14em] mt-2">
+              <span className="font-display uppercase text-bx-600 text-[0.53rem] tracking-[0.14em] mt-2">
                 {book.category}
               </span>
               <h3 className="font-heading italic font-semibold text-gy-900 mt-1">{book.title}</h3>
-              <p className="font-display uppercase text-gy-400 text-[0.46rem] tracking-[0.12em] mt-1">{book.author}</p>
+              <p className="font-display uppercase text-gy-400 text-[0.55rem] tracking-[0.12em] mt-1">{book.author}</p>
               <p className="font-body text-[0.9rem] text-gy-500 leading-relaxed mt-2 flex-1">{book.excerpt}</p>
 
               <div className="flex items-center justify-between mt-4">
-                <span className="font-display uppercase text-gy-400 text-[0.46rem] tracking-[0.1em]">
+                <span className="font-display uppercase text-gy-400 text-[0.55rem] tracking-[0.1em]">
                   {book.reviewer}
                 </span>
                 <Link
                   to="/resenhas/exemplo"
-                  className="font-display uppercase text-[0.46rem] tracking-[0.1em] text-bx-700 hover:text-bx-900 transition-colors"
+                  className="font-display uppercase text-[0.55rem] tracking-[0.1em] text-bx-700 hover:text-bx-900 transition-colors"
                 >
                   Ler Resenha →
                 </Link>

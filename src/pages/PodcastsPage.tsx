@@ -23,10 +23,10 @@ const PodcastsPage = () => {
       {/* Page header */}
       <div className="bg-bx-900 py-14 lg:py-20">
         <div className="max-w-[1120px] mx-auto px-[clamp(16px,4vw,48px)]">
-          <h1 className="font-heading text-[clamp(1.8rem,4vw,2.8rem)] italic font-semibold text-white/[0.92] leading-[1.15] mb-3">
+          <h1 className="font-heading text-[clamp(2.16rem,4.8vw,3.36rem)] italic font-semibold text-white/[0.92] leading-[1.15] mb-3">
             Podcasts
           </h1>
-          <p className="font-body text-[1.05rem] text-white/[0.45] max-w-[52ch] leading-[1.7]">
+          <p className="font-body text-[1.26rem] text-white/[0.45] max-w-[52ch] leading-[1.7]">
             Conversas, aulas e entrevistas sobre educação clássica e formação cristã.
           </p>
         </div>
@@ -53,7 +53,7 @@ const PodcastsPage = () => {
                   <p className="font-body text-[0.9rem] text-gy-500 leading-[1.6] mb-4 line-clamp-3">
                     {pod.desc}
                   </p>
-                  <span className="font-display text-[0.5rem] tracking-[0.16em] uppercase text-bx-700 hover:text-bx-600 transition-colors">
+                  <span className="font-display text-[0.6rem] tracking-[0.16em] uppercase text-bx-700 hover:text-bx-600 transition-colors">
                     Ver episódios →
                   </span>
                 </Link>

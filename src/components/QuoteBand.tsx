@@ -5,7 +5,7 @@ const QuoteBand = () => (
       <blockquote className="font-heading text-[clamp(1.1rem,2vw,1.5rem)] italic text-gy-800 leading-[1.5] mb-3.5">
         "O objetivo da educação não é preencher um balde, mas acender um fogo."
       </blockquote>
-      <p className="font-display text-[0.5rem] tracking-[0.2em] uppercase text-gy-400">
+      <p className="font-display text-[0.6rem] tracking-[0.2em] uppercase text-gy-400">
         William Butler Yeats &nbsp;·&nbsp; atribuído
       </p>
     </div>
