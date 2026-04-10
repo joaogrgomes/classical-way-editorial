@@ -1,73 +1,20 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
-import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { supabase } from "@/lib/supabase";
 
-const categories = ["Todos", "Educação", "Empreendedorismo", "Literatura Clássica"];
-
-const allBooks = [
-  {
-    title: "A Escola Clássica Cristã",
-    author: "Douglas Wilson",
-    category: "Educação",
-    badge: "Recomendado",
-    stars: 5,
-    reviewer: "Dr. Marcos Albuquerque",
-    excerpt: "Uma defesa vigorosa e prática da educação clássica cristã como modelo pedagógico para a igreja contemporânea.",
-    coverBg: "bg-bx-800",
-  },
-  {
-    title: "Norms & Nobility",
-    author: "David Hicks",
-    category: "Educação",
-    badge: "Clássico",
-    stars: 4,
-    reviewer: "Profa. Ana Cavalcante",
-    excerpt: "Um tratado sobre o ideal educacional clássico e sua relevância para a formação moral e intelectual.",
-    coverBg: "bg-bx-600",
-  },
-  {
-    title: "The Lost Tools of Learning",
-    author: "Dorothy L. Sayers",
-    category: "Educação",
-    badge: "Clássico",
-    stars: 4,
-    reviewer: "Rev. Pedro Nóbrega",
-    excerpt: "O ensaio seminal que relançou o Trivium como modelo pedagógico no século XX.",
-    coverBg: "bg-gd-700",
-  },
-  {
-    title: "Zero to One",
-    author: "Peter Thiel",
-    category: "Empreendedorismo",
-    badge: "Recomendado",
-    stars: 5,
-    reviewer: "João Mendes",
-    excerpt: "Uma reflexão original sobre inovação, monopólios criativos e o futuro da civilização tecnológica.",
-    coverBg: "bg-bx-800",
-  },
-  {
-    title: "A Ilíada",
-    author: "Homero",
-    category: "Literatura Clássica",
-    badge: "Clássico",
-    stars: 5,
-    reviewer: "Prof. Rodrigo Castro",
-    excerpt: "A epopeia fundadora da literatura ocidental — um drama sobre honra, ira e a condição humana.",
-    coverBg: "bg-bx-600",
-  },
-  {
-    title: "A República",
-    author: "Platão",
-    category: "Literatura Clássica",
-    badge: "Clássico",
-    stars: 5,
-    reviewer: "Profa. Clara Mendes",
-    excerpt: "O diálogo platônico sobre justiça, educação e a alma — pedra angular do pensamento ocidental.",
-    coverBg: "bg-gd-700",
-  },
-];
+type Review = {
+  id: string;
+  title: string;
+  slug: string;
+  book_title: string;
+  book_author: string;
+  cover_url: string;
+  content: string;
+  created_at: string;
+  authors: { name: string } | null;
+};
 
 const StarRating = ({ count }: { count: number }) => (
   <div className="flex gap-0.5 text-gd-600 text-sm">
@@ -78,18 +25,28 @@ const StarRating = ({ count }: { count: number }) => (
 );
 
 const BookReviewsPage = () => {
-  const [activeCategory, setActiveCategory] = useState("Todos");
-  useScrollReveal();
+  const [reviews, setReviews] = useState<Review[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const filtered = activeCategory === "Todos"
-    ? allBooks
-    : allBooks.filter((b) => b.category === activeCategory);
+  useEffect(() => {
+    async function fetchReviews() {
+      const { data } = await supabase
+        .from("reviews")
+        .select("id, title, slug, book_title, book_author, cover_url, content, created_at, authors(name)")
+        .eq("status", "published")
+        .order("created_at", { ascending: false });
+      setReviews((data as unknown as Review[]) || []);
+      setLoading(false);
+    }
+    fetchReviews();
+  }, []);
+
+  const coverColors = ["bg-bx-800", "bg-bx-600", "bg-gd-700"];
 
   return (
     <div className="min-h-screen bg-background">
       <SiteHeader />
 
-      {/* Hero */}
       <div className="bg-bx-900 py-14 lg:py-20">
         <div className="max-w-[1120px] mx-auto px-[clamp(16px,4vw,48px)]">
           <h1 className="font-heading text-[clamp(2.16rem,4.8vw,3.36rem)] italic font-semibold text-white/[0.92] leading-[1.15] mb-3">
@@ -101,82 +58,51 @@ const BookReviewsPage = () => {
         </div>
       </div>
 
-      {/* Filters */}
-      <div className="border-b border-gy-100 sticky top-[58px] z-40 bg-background/95 backdrop-blur-sm">
-        <div className="max-w-[1120px] mx-auto px-[clamp(16px,4vw,48px)]">
-          <div className="flex gap-0 overflow-x-auto scrollbar-hide py-0">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                className={`font-display text-[0.6rem] tracking-[0.14em] uppercase whitespace-nowrap px-4 py-3.5 border-b-2 transition-colors duration-200 ${
-                  activeCategory === cat
-                    ? "border-bx-700 text-bx-700 font-semibold"
-                    : "border-transparent text-gy-400 hover:text-gy-700"
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Grid */}
       <section className="py-12 lg:py-16">
         <div className="max-w-[1120px] mx-auto px-[clamp(16px,4vw,48px)]">
-          {filtered.length === 0 ? (
+          {loading ? (
             <div className="py-20 text-center">
-              <p className="font-body text-gy-400 text-lg">Nenhuma resenha encontrada nesta categoria.</p>
-              <button
-                onClick={() => setActiveCategory("Todos")}
-                className="font-display text-[0.6rem] tracking-[0.14em] uppercase text-bx-700 mt-4 hover:text-bx-600 transition-colors"
-              >
-                Ver todas as resenhas →
-              </button>
+              <p className="font-body text-gy-400 text-lg">Carregando resenhas...</p>
+            </div>
+          ) : reviews.length === 0 ? (
+            <div className="py-20 text-center">
+              <p className="font-body text-gy-400 text-lg">Nenhuma resenha publicada ainda.</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
-              {filtered.map((book) => (
-                <div key={book.title} className="group reveal">
-                  {/* Cover */}
-                  <div className={`aspect-[2/3] ${book.coverBg} relative flex flex-col items-center justify-center p-8 mb-4`}>
-                    {/* Badge */}
-                    <span
-                      className={`absolute top-3 left-3 font-display text-[0.6rem] tracking-[0.14em] uppercase text-white px-2.5 py-1 ${
-                        book.badge === "Recomendado" ? "bg-gd-700" : "bg-gy-700"
-                      }`}
-                    >
-                      {book.badge}
-                    </span>
-                    <h3 className="font-heading text-[1.2rem] italic font-semibold text-white text-center leading-[1.3] mb-2">
-                      {book.title}
-                    </h3>
-                    <p className="font-display text-[0.55rem] tracking-[0.14em] uppercase text-white/60">
-                      {book.author}
-                    </p>
+              {reviews.map((review, i) => (
+                <div key={review.id} className="group">
+                  <div className={`aspect-[2/3] ${coverColors[i % coverColors.length]} relative flex flex-col items-center justify-center p-8 mb-4 overflow-hidden`}>
+                    {review.cover_url && (
+                      <img
+                        src={review.cover_url}
+                        alt={review.book_title}
+                        className="absolute inset-0 w-full h-full object-cover opacity-60"
+                      />
+                    )}
+                    <div className="relative z-10 text-center">
+                      <h3 className="font-heading text-[1.2rem] italic font-semibold text-white text-center leading-[1.3] mb-2">
+                        {review.book_title || review.title}
+                      </h3>
+                      <p className="font-display text-[0.55rem] tracking-[0.14em] uppercase text-white/60">
+                        {review.book_author}
+                      </p>
+                    </div>
                   </div>
 
-                  {/* Info */}
-                  <StarRating count={book.stars} />
-                  <span className="font-display text-[0.53rem] tracking-[0.16em] uppercase text-bx-600 font-semibold mt-2 block">
-                    {book.category}
-                  </span>
+                  <StarRating count={5} />
                   <h2 className="font-heading text-[1.38rem] font-semibold italic text-gy-900 leading-[1.25] mt-1 mb-1">
-                    {book.title}
+                    {review.title}
                   </h2>
                   <p className="font-display text-[0.55rem] tracking-[0.12em] uppercase text-gy-400 mb-2">
-                    {book.author}
+                    {review.book_author}
                   </p>
-                  <p className="font-body text-[1.32rem] text-gy-500 leading-[1.65] mb-3">
-                    {book.excerpt}
-                  </p>
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between mt-3">
                     <span className="font-display text-[0.55rem] tracking-[0.12em] uppercase text-gy-400">
-                      {book.reviewer}
+                      {review.authors?.name}
                     </span>
                     <Link
-                      to="/resenhas/exemplo"
+                      to={`/resenhas/${review.slug}`}
                       className="font-display text-[0.55rem] tracking-[0.12em] uppercase text-bx-700 hover:text-bx-600 transition-colors"
                     >
                       Ler Resenha →
