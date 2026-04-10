@@ -4,87 +4,24 @@ import { ChevronDown } from "lucide-react";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { supabase } from "@/lib/supabase";
 
 const themes = ["Todos os temas", "Sala de Aula", "Família", "Trivium", "Quadrivium", "Arte & Cultura", "Teologia & Pedagogia", "Negócios & Marketing", "Gestão"];
 
-const allArticles = [
-  {
-    category: "Sala de Aula",
-    title: "Aprender Latim não é elitismo: é restituir o acesso à sabedoria ocidental",
-    excerpt: "A língua latina não é um luxo arcaico, mas a chave para uma herança intelectual e espiritual que moldou a civilização.",
-    author: "Profa. Clara Mendes",
-    date: "10 Mar. 2026",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Folio_27r_-_The_Book_of_Kells.jpg/800px-Folio_27r_-_The_Book_of_Kells.jpg",
-  },
-  {
-    category: "Trivium",
-    title: "Platão na sala de aula: o mito da caverna como método pedagógico",
-    excerpt: "Da alegoria platônica à prática docente contemporânea — como a filosofia clássica transforma o ensino.",
-    author: "Dr. Samuel Luz",
-    date: "18 Fev. 2026",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Plato_Pio-Clementino_Inv305.jpg/800px-Plato_Pio-Clementino_Inv305.jpg",
-  },
-  {
-    category: "Arte & Cultura",
-    title: "Homero, os heróis e a educação do coração",
-    excerpt: "A Ilíada e a Odisseia como mapas da condição humana que ressoam com a antropologia cristã.",
-    author: "Prof. Rodrigo Castro",
-    date: "20 Fev. 2026",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Euphronios_krater_side_A_MET_1972.11.10.jpg/1200px-Euphronios_krater_side_A_MET_1972.11.10.jpg",
-  },
-  {
-    category: "Teologia & Pedagogia",
-    title: "Lutero, Calvino e a reforma do ensino: uma herança protestante",
-    excerpt: "Como a Reforma moldou uma nova visão de educação centrada na Escritura, na leitura e na formação do caráter.",
-    author: "Rev. Tiago Nogueira",
-    date: "5 Fev. 2026",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Folio_27r_-_The_Book_of_Kells.jpg/800px-Folio_27r_-_The_Book_of_Kells.jpg",
-  },
-  {
-    category: "Sala de Aula",
-    title: "Como estruturar um currículo clássico do zero",
-    excerpt: "Um guia prático para famílias e escolas que desejam iniciar a jornada da educação clássica com clareza e método.",
-    author: "Marina Santos",
-    date: "28 Jan. 2026",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Plato_Pio-Clementino_Inv305.jpg/800px-Plato_Pio-Clementino_Inv305.jpg",
-  },
-  {
-    category: "Trivium",
-    title: "Virtude em Aristóteles e sua relevância para a educação cristã hoje",
-    excerpt: "A ética das virtudes como fundamento da formação integral do aluno — prudência, justiça, temperança e fortaleza.",
-    author: "Dr. Samuel Luz",
-    date: "15 Jan. 2026",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Euphronios_krater_side_A_MET_1972.11.10.jpg/1200px-Euphronios_krater_side_A_MET_1972.11.10.jpg",
-  },
-  {
-    category: "Família",
-    title: "A leitura em voz alta como liturgia familiar",
-    excerpt: "Ler juntos não é apenas pedagogia — é um ato de amor, memória e formação do imaginário moral.",
-    author: "Ana Beatriz Lopes",
-    date: "8 Jan. 2026",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Folio_27r_-_The_Book_of_Kells.jpg/800px-Folio_27r_-_The_Book_of_Kells.jpg",
-  },
-  {
-    category: "Sala de Aula",
-    title: "O papel da memorização na formação clássica",
-    excerpt: "Decorar não é decorativo: a memória como faculdade essencial no Trivium e na tradição cristã.",
-    author: "Profa. Clara Mendes",
-    date: "2 Jan. 2026",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Plato_Pio-Clementino_Inv305.jpg/800px-Plato_Pio-Clementino_Inv305.jpg",
-  },
-  {
-    category: "Arte & Cultura",
-    title: "Virgílio e a educação do desejo: a Eneida como itinerário da alma",
-    excerpt: "A epopeia romana como narrativa de formação — do exílio à pátria, da errância à vocação.",
-    author: "Prof. Rodrigo Castro",
-    date: "20 Dez. 2025",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Euphronios_krater_side_A_MET_1972.11.10.jpg/1200px-Euphronios_krater_side_A_MET_1972.11.10.jpg",
-  },
-];
-
-const uniqueAuthors = ["Todos os autores", ...Array.from(new Set(allArticles.map((a) => a.author)))];
+type Article = {
+  id: string;
+  title: string;
+  slug: string;
+  category: string;
+  cover_url: string;
+  published_at: string;
+  created_at: string;
+  authors: { name: string } | null;
+};
 
 const ArtigosPage = () => {
+  const [articles, setArticles] = useState<Article[]>([]);
+  const [loading, setLoading] = useState(true);
   const [activeTheme, setActiveTheme] = useState("Todos os temas");
   const [activeAuthor, setActiveAuthor] = useState("Todos os autores");
   const [themeOpen, setThemeOpen] = useState(false);
@@ -92,6 +29,19 @@ const ArtigosPage = () => {
   const themeRef = useRef<HTMLDivElement>(null);
   const authorRef = useRef<HTMLDivElement>(null);
   useScrollReveal();
+
+  useEffect(() => {
+    async function fetchArticles() {
+      const { data, error } = await supabase
+        .from("articles")
+        .select("id, title, slug, category, cover_url, published_at, created_at, authors(name)")
+        .eq("status", "published")
+        .order("created_at", { ascending: false });
+      setArticles((data as unknown as Article[]) || []);
+      setLoading(false);
+    }
+    fetchArticles();
+  }, []);
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
@@ -102,26 +52,27 @@ const ArtigosPage = () => {
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
-  const filtered = allArticles.filter((a) => {
+  const uniqueAuthors = ["Todos os autores", ...Array.from(new Set(articles.map((a) => a.authors?.name).filter(Boolean)))];
+
+  const filtered = articles.filter((a) => {
     const matchTheme = activeTheme === "Todos os temas" || a.category === activeTheme;
-    const matchAuthor = activeAuthor === "Todos os autores" || a.author === activeAuthor;
+    const matchAuthor = activeAuthor === "Todos os autores" || a.authors?.name === activeAuthor;
     return matchTheme && matchAuthor;
   });
 
-  const dropdownBtnClass =
-    "border border-gy-200 text-gy-700 font-display text-[0.58rem] tracking-[0.14em] uppercase px-4 py-2 flex items-center gap-2 hover:border-gy-400 transition-colors";
+  const formatDate = (dateStr: string) => {
+    const date = new Date(dateStr);
+    return date.toLocaleDateString("pt-BR", { day: "2-digit", month: "short", year: "numeric" });
+  };
 
-  const dropdownMenuClass =
-    "absolute top-full left-0 mt-1 bg-background border border-gy-100 shadow-[0_4px_16px_rgba(0,0,0,0.08)] z-50 min-w-[200px]";
-
-  const dropdownItemClass =
-    "px-4 py-2.5 font-display text-[0.58rem] tracking-[0.14em] uppercase text-gy-700 hover:bg-surface-warm cursor-pointer block w-full text-left transition-colors";
+  const dropdownBtnClass = "border border-gy-200 text-gy-700 font-display text-[0.58rem] tracking-[0.14em] uppercase px-4 py-2 flex items-center gap-2 hover:border-gy-400 transition-colors";
+  const dropdownMenuClass = "absolute top-full left-0 mt-1 bg-background border border-gy-100 shadow-[0_4px_16px_rgba(0,0,0,0.08)] z-50 min-w-[200px]";
+  const dropdownItemClass = "px-4 py-2.5 font-display text-[0.58rem] tracking-[0.14em] uppercase text-gy-700 hover:bg-surface-warm cursor-pointer block w-full text-left transition-colors";
 
   return (
     <div className="min-h-screen bg-background">
       <SiteHeader />
 
-      {/* Page header */}
       <div className="bg-bx-900 py-14 lg:py-20">
         <div className="max-w-[1120px] mx-auto px-[clamp(16px,4vw,48px)]">
           <h1 className="font-heading text-[clamp(2.16rem,4.8vw,3.36rem)] italic font-semibold text-white/[0.92] leading-[1.15] mb-3">
@@ -133,11 +84,9 @@ const ArtigosPage = () => {
         </div>
       </div>
 
-      {/* Filters */}
       <div className="border-b border-gy-100 sticky top-[58px] z-40 bg-background/95 backdrop-blur-sm">
         <div className="max-w-[1120px] mx-auto px-[clamp(16px,4vw,48px)] py-3">
           <div className="flex gap-3 flex-wrap">
-            {/* Theme dropdown */}
             <div className="relative" ref={themeRef}>
               <button onClick={() => { setThemeOpen(!themeOpen); setAuthorOpen(false); }} className={dropdownBtnClass}>
                 {activeTheme} <ChevronDown size={12} className={`transition-transform ${themeOpen ? "rotate-180" : ""}`} />
@@ -145,11 +94,8 @@ const ArtigosPage = () => {
               {themeOpen && (
                 <div className={dropdownMenuClass}>
                   {themes.map((t) => (
-                    <button
-                      key={t}
-                      onClick={() => { setActiveTheme(t); setThemeOpen(false); }}
-                      className={`${dropdownItemClass} ${activeTheme === t ? "bg-surface-warm text-bx-900 font-semibold" : ""}`}
-                    >
+                    <button key={t} onClick={() => { setActiveTheme(t); setThemeOpen(false); }}
+                      className={`${dropdownItemClass} ${activeTheme === t ? "bg-surface-warm text-bx-900 font-semibold" : ""}`}>
                       {t}
                     </button>
                   ))}
@@ -157,7 +103,6 @@ const ArtigosPage = () => {
               )}
             </div>
 
-            {/* Author dropdown */}
             <div className="relative" ref={authorRef}>
               <button onClick={() => { setAuthorOpen(!authorOpen); setThemeOpen(false); }} className={dropdownBtnClass}>
                 {activeAuthor} <ChevronDown size={12} className={`transition-transform ${authorOpen ? "rotate-180" : ""}`} />
@@ -165,11 +110,8 @@ const ArtigosPage = () => {
               {authorOpen && (
                 <div className={dropdownMenuClass}>
                   {uniqueAuthors.map((a) => (
-                    <button
-                      key={a}
-                      onClick={() => { setActiveAuthor(a); setAuthorOpen(false); }}
-                      className={`${dropdownItemClass} ${activeAuthor === a ? "bg-surface-warm text-bx-900 font-semibold" : ""}`}
-                    >
+                    <button key={a} onClick={() => { setActiveAuthor(a as string); setAuthorOpen(false); }}
+                      className={`${dropdownItemClass} ${activeAuthor === a ? "bg-surface-warm text-bx-900 font-semibold" : ""}`}>
                       {a}
                     </button>
                   ))}
@@ -180,26 +122,27 @@ const ArtigosPage = () => {
         </div>
       </div>
 
-      {/* Articles grid */}
       <section className="py-12 lg:py-16">
         <div className="max-w-[1120px] mx-auto px-[clamp(16px,4vw,48px)]">
-          {filtered.length === 0 ? (
+          {loading ? (
             <div className="py-20 text-center">
-              <p className="font-body text-gy-400 text-lg">Nenhum artigo encontrado com esses filtros.</p>
-              <button
-                onClick={() => { setActiveTheme("Todos os temas"); setActiveAuthor("Todos os autores"); }}
-                className="font-display text-[0.6rem] tracking-[0.14em] uppercase text-bx-700 mt-4 hover:text-bx-600 transition-colors"
-              >
+              <p className="font-body text-gy-400 text-lg">Carregando artigos...</p>
+            </div>
+          ) : filtered.length === 0 ? (
+            <div className="py-20 text-center">
+              <p className="font-body text-gy-400 text-lg">Nenhum artigo encontrado.</p>
+              <button onClick={() => { setActiveTheme("Todos os temas"); setActiveAuthor("Todos os autores"); }}
+                className="font-display text-[0.6rem] tracking-[0.14em] uppercase text-bx-700 mt-4 hover:text-bx-600 transition-colors">
                 Limpar filtros →
               </button>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
               {filtered.map((article) => (
-                <Link key={article.title} to="/artigos/exemplo" className="group cursor-pointer reveal block">
+                <Link key={article.id} to={`/artigos/${article.slug}`} className="group cursor-pointer block">
                   <div className="aspect-[4/3] overflow-hidden mb-4">
                     <img
-                      src={article.image}
+                      src={article.cover_url || "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Folio_27r_-_The_Book_of_Kells.jpg/800px-Folio_27r_-_The_Book_of_Kells.jpg"}
                       alt={article.title}
                       className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
                       loading="lazy"
@@ -211,12 +154,9 @@ const ArtigosPage = () => {
                   <h2 className="font-heading text-[1.38rem] font-semibold italic text-gy-900 leading-[1.25] mb-2 group-hover:text-bx-700 transition-colors">
                     {article.title}
                   </h2>
-                  <p className="font-body text-[1.32rem] text-gy-500 leading-[1.65] mb-3">
-                    {article.excerpt}
-                  </p>
                   <div className="flex justify-between items-center">
-                    <span className="font-display text-[0.55rem] tracking-[0.12em] uppercase text-gy-400">{article.author}</span>
-                    <span className="font-display text-[0.55rem] tracking-[0.1em] uppercase text-gy-300">{article.date}</span>
+                    <span className="font-display text-[0.55rem] tracking-[0.12em] uppercase text-gy-400">{article.authors?.name}</span>
+                    <span className="font-display text-[0.55rem] tracking-[0.1em] uppercase text-gy-300">{formatDate(article.published_at || article.created_at)}</span>
                   </div>
                 </Link>
               ))}
