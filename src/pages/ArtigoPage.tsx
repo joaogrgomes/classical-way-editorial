@@ -14,7 +14,7 @@ type Article = {
   content: string;
   published_at: string;
   created_at: string;
-  authors: { name: string; bio: string } | null;
+  authors: { name: string; bio: string; slug?: string; photo_url?: string } | null;
   featured_book_title?: string;
   featured_book_author?: string;
   featured_book_cover_url?: string;
@@ -66,7 +66,7 @@ const ArtigoPage = () => {
   async function fetchArticle() {
     const { data } = await supabase
       .from("articles")
-      .select("*, authors(name, bio)")
+      .select("*, authors(name, bio, slug, photo_url)")
       .eq("slug", slug)
       .eq("status", "published")
       .single();
@@ -116,6 +116,8 @@ const ArtigoPage = () => {
 
   if (!article) return null;
 
+  const authorLink = article.authors?.slug ? `/autores/${article.authors.slug}` : null;
+
   return (
     <div className="min-h-screen bg-background">
       <SiteHeader />
@@ -154,14 +156,34 @@ const ArtigoPage = () => {
           <div className="flex items-center gap-4 flex-wrap">
             {article.authors?.name && (
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full bg-gd-700 flex items-center justify-center flex-shrink-0">
-                  <span className="font-display text-[0.46rem] text-white uppercase">
-                    {getInitials(article.authors.name)}
-                  </span>
-                </div>
-                <span className="font-display text-[0.55rem] tracking-[0.12em] uppercase text-white/70">
-                  {article.authors.name}
-                </span>
+                {/* Avatar do autor — clicável se tiver slug */}
+                {authorLink ? (
+                  <Link to={authorLink} className="flex items-center gap-3 group">
+                    <div className="w-9 h-9 rounded-full bg-gd-700 flex items-center justify-center flex-shrink-0 overflow-hidden">
+                      {article.authors?.photo_url ? (
+                        <img src={article.authors.photo_url} alt={article.authors.name} className="w-full h-full object-cover" />
+                      ) : (
+                        <span className="font-display text-[0.46rem] text-white uppercase">
+                          {getInitials(article.authors.name)}
+                        </span>
+                      )}
+                    </div>
+                    <span className="font-display text-[0.55rem] tracking-[0.12em] uppercase text-white/70 group-hover:text-white transition-colors">
+                      {article.authors.name}
+                    </span>
+                  </Link>
+                ) : (
+                  <>
+                    <div className="w-9 h-9 rounded-full bg-gd-700 flex items-center justify-center flex-shrink-0">
+                      <span className="font-display text-[0.46rem] text-white uppercase">
+                        {getInitials(article.authors.name)}
+                      </span>
+                    </div>
+                    <span className="font-display text-[0.55rem] tracking-[0.12em] uppercase text-white/70">
+                      {article.authors.name}
+                    </span>
+                  </>
+                )}
               </div>
             )}
             <span className="w-[3px] h-[3px] bg-white/30 rounded-full hidden sm:block" />
@@ -183,7 +205,6 @@ const ArtigoPage = () => {
             Compartilhar
           </span>
           <div className="flex items-center gap-1">
-            {/* X (Twitter) */}
             <a
               href={`https://twitter.com/share?url=${shareUrl}&text=${encodeURIComponent(article.title)}`}
               target="_blank"
@@ -195,7 +216,6 @@ const ArtigoPage = () => {
                 <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.261 5.635zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
               </svg>
             </a>
-            {/* WhatsApp */}
             <a
               href={`https://wa.me/?text=${encodeURIComponent(article.title + " " + shareUrl)}`}
               target="_blank"
@@ -340,15 +360,37 @@ const ArtigoPage = () => {
                 Sobre o autor
               </p>
               <div className="flex items-start gap-5">
-                <div className="w-16 h-16 rounded-full bg-gd-700 flex items-center justify-center flex-shrink-0">
-                  <span className="font-display text-[0.6rem] text-white uppercase">
-                    {getInitials(article.authors.name)}
-                  </span>
-                </div>
+                {authorLink ? (
+                  <Link to={authorLink} className="flex-shrink-0">
+                    <div className="w-16 h-16 rounded-full bg-gd-700 flex items-center justify-center overflow-hidden hover:opacity-80 transition-opacity">
+                      {article.authors.photo_url ? (
+                        <img src={article.authors.photo_url} alt={article.authors.name} className="w-full h-full object-cover" />
+                      ) : (
+                        <span className="font-display text-[0.6rem] text-white uppercase">
+                          {getInitials(article.authors.name)}
+                        </span>
+                      )}
+                    </div>
+                  </Link>
+                ) : (
+                  <div className="w-16 h-16 rounded-full bg-gd-700 flex items-center justify-center flex-shrink-0">
+                    <span className="font-display text-[0.6rem] text-white uppercase">
+                      {getInitials(article.authors.name)}
+                    </span>
+                  </div>
+                )}
                 <div>
-                  <p className="font-heading text-[1.15rem] font-semibold text-gy-900 mb-2">
-                    {article.authors.name}
-                  </p>
+                  {authorLink ? (
+                    <Link to={authorLink} className="hover:text-bx-700 transition-colors">
+                      <p className="font-heading text-[1.15rem] font-semibold text-gy-900 mb-2">
+                        {article.authors.name}
+                      </p>
+                    </Link>
+                  ) : (
+                    <p className="font-heading text-[1.15rem] font-semibold text-gy-900 mb-2">
+                      {article.authors.name}
+                    </p>
+                  )}
                   {article.authors.bio && (
                     <p className="font-body text-[1rem] text-gy-500 leading-[1.7]">
                       {article.authors.bio}
@@ -368,16 +410,33 @@ const ArtigoPage = () => {
             {article.authors && (
               <div className="mb-10 pb-10 border-b border-gy-100">
                 <p className="font-display text-[0.48rem] tracking-[0.18em] uppercase text-gy-400 mb-4">Autor</p>
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-11 h-11 rounded-full bg-gd-700 flex items-center justify-center flex-shrink-0">
-                    <span className="font-display text-[0.5rem] text-white uppercase">
-                      {getInitials(article.authors.name)}
-                    </span>
+                {authorLink ? (
+                  <Link to={authorLink} className="flex items-center gap-3 mb-3 group">
+                    <div className="w-11 h-11 rounded-full bg-gd-700 flex items-center justify-center flex-shrink-0 overflow-hidden">
+                      {article.authors.photo_url ? (
+                        <img src={article.authors.photo_url} alt={article.authors.name} className="w-full h-full object-cover" />
+                      ) : (
+                        <span className="font-display text-[0.5rem] text-white uppercase">
+                          {getInitials(article.authors.name)}
+                        </span>
+                      )}
+                    </div>
+                    <p className="font-heading text-[0.95rem] font-semibold text-gy-900 leading-[1.3] group-hover:text-bx-700 transition-colors">
+                      {article.authors.name}
+                    </p>
+                  </Link>
+                ) : (
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-11 h-11 rounded-full bg-gd-700 flex items-center justify-center flex-shrink-0">
+                      <span className="font-display text-[0.5rem] text-white uppercase">
+                        {getInitials(article.authors.name)}
+                      </span>
+                    </div>
+                    <p className="font-heading text-[0.95rem] font-semibold text-gy-900 leading-[1.3]">
+                      {article.authors.name}
+                    </p>
                   </div>
-                  <p className="font-heading text-[0.95rem] font-semibold text-gy-900 leading-[1.3]">
-                    {article.authors.name}
-                  </p>
-                </div>
+                )}
                 {article.authors.bio && (
                   <p className="font-body text-[0.9rem] text-gy-500 leading-[1.7] line-clamp-4">
                     {article.authors.bio}
