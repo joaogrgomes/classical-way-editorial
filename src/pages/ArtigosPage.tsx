@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
@@ -20,6 +20,7 @@ type Article = {
 };
 
 const ArtigosPage = () => {
+  const [searchParams] = useSearchParams();
   const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
   const [activeTheme, setActiveTheme] = useState("Todos os temas");
@@ -32,7 +33,7 @@ const ArtigosPage = () => {
 
   useEffect(() => {
     async function fetchArticles() {
-      const { data, error } = await supabase
+      const { data } = await supabase
         .from("articles")
         .select("id, title, slug, category, cover_url, published_at, created_at, authors(name)")
         .eq("status", "published")
@@ -42,6 +43,12 @@ const ArtigosPage = () => {
     }
     fetchArticles();
   }, []);
+
+  // Lê o parâmetro ?categoria= da URL e ativa o filtro
+  useEffect(() => {
+    const cat = searchParams.get("categoria");
+    if (cat) setActiveTheme(cat);
+  }, [searchParams]);
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
