@@ -127,9 +127,9 @@ const SiteHeader = () => {
 
         {/* Actions */}
         <div className="flex items-center gap-2">
-          <button className="w-[34px] h-[34px] flex items-center justify-center text-bx-700 hover:text-gd-500 transition-colors" aria-label="Buscar">
+          <Link to="/busca" className="w-[34px] h-[34px] flex items-center justify-center text-bx-700 hover:text-gd-500 transition-colors" aria-label="Buscar">
             <Search size={17} />
-          </button>
+          </Link>
           <Link
             to="/apoiar"
             className="hidden sm:block font-display text-[0.6rem] tracking-[0.16em] uppercase bg-gd-700 text-white px-3.5 py-[7px] hover:bg-gd-600 transition-colors"
