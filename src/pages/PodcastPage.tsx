@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Play, ChevronDown, ExternalLink } from "lucide-react";
+import SEOHead from "@/components/SEOHead";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
@@ -108,6 +109,12 @@ const PodcastPage = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="Classical Founders Podcast — The Classical Way"
+        description="Conversas semanais sobre educação clássica, artes liberais e formação cristã. Porque ensinar é uma vocação que exige sabedoria."
+        canonical="https://theclassicalway.com.br/podcasts"
+        ogType="website"
+      />
       <SiteHeader />
 
       {/* Hero */}

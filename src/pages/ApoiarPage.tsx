@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import SEOHead from "@/components/SEOHead";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
@@ -22,6 +23,12 @@ const ApoiarPage = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="Apoiar — The Classical Way"
+        description="Sustente a difusão da verdade, da beleza e do bem. Sua contribuição nos permite continuar publicando artigos, produzindo podcasts e cultivando a educação clássica."
+        canonical="https://theclassicalway.com.br/apoiar"
+        ogType="website"
+      />
       <SiteHeader />
 
       {/* Hero */}

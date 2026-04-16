@@ -1,3 +1,4 @@
+import SEOHead from "@/components/SEOHead";
 import SiteHeader from "@/components/SiteHeader";
 import HeroBanner from "@/components/HeroBanner";
 import Masthead from "@/components/Masthead";
@@ -17,6 +18,12 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="The Classical Way — Educação Cristã Clássica"
+        description="Formando mentes e almas para a glória de Deus através da herança viva da educação cristã clássica. Artigos, podcasts e recursos para educadores e famílias."
+        canonical="https://theclassicalway.com.br/"
+        ogType="website"
+      />
       <SiteHeader />
       <Masthead />
       <FrontpageHero />

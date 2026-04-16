@@ -1,3 +1,4 @@
+import SEOHead from "@/components/SEOHead";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 
@@ -10,6 +11,12 @@ const beliefs = [
 
 const SobreNosPage = () => (
   <div className="min-h-screen flex flex-col">
+    <SEOHead
+      title="Sobre Nós — The Classical Way"
+      description="Somos um portal editorial dedicado à Educação Cristã Clássica — guiando famílias e educadores no caminho da sabedoria, da verdade e da beleza."
+      canonical="https://theclassicalway.com.br/sobre"
+      ogType="website"
+    />
     <SiteHeader />
 
     {/* Hero */}

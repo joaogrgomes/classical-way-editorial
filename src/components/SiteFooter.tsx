@@ -1,5 +1,3 @@
-import LogoMark from "./LogoMark";
-
 const footerCols = [
   {
     title: "Conteúdo",
@@ -22,7 +20,19 @@ const SiteFooter = () => (
         {/* Brand */}
         <div>
           <div className="flex items-center gap-3 mb-4">
-            <LogoMark size={36} />
+            {/* Symbol — logo-header-e-footer.svg, rendered white via currentColor */}
+            <svg width="36" height="36" viewBox="0 0 132 132" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-white flex-shrink-0">
+              <path d="M66.1538 112.308C91.6439 112.308 112.308 91.6439 112.308 66.1538C112.308 40.6638 91.6439 20 66.1538 20C40.6638 20 20 40.6638 20 66.1538C20 91.6439 40.6638 112.308 66.1538 112.308Z" stroke="currentColor" strokeWidth="1.47692"/>
+              <path opacity="0.4" d="M66.1537 105.846C88.0752 105.846 105.846 88.0752 105.846 66.1537C105.846 44.2323 88.0752 26.4614 66.1537 26.4614C44.2323 26.4614 26.4614 44.2323 26.4614 66.1537C26.4614 88.0752 44.2323 105.846 66.1537 105.846Z" stroke="currentColor" strokeWidth="0.3"/>
+              <path d="M66 66.0769V31" stroke="currentColor" strokeLinecap="round"/>
+              <path d="M66 66V101.077" stroke="currentColor" strokeLinecap="round"/>
+              <path d="M66 66H101.077" stroke="currentColor" strokeLinecap="round"/>
+              <path d="M66.0769 66H31" stroke="currentColor" strokeLinecap="round"/>
+              <path opacity="0.4" d="M44.1768 43.8232C44.0791 43.7256 43.9209 43.7256 43.8232 43.8232C43.7256 43.9209 43.7256 44.0791 43.8232 44.1768L44 44L44.1768 43.8232ZM43.8232 88.1309C43.7256 88.2285 43.7256 88.3868 43.8232 88.4844C43.9209 88.5821 44.0791 88.5821 44.1768 88.4844L44 88.3077L43.8232 88.1309ZM88.1309 88.4844C88.2285 88.5821 88.3868 88.5821 88.4844 88.4844C88.5821 88.3868 88.5821 88.2285 88.4844 88.1309L88.3077 88.3077L88.1309 88.4844ZM66.1538 66.1538L66.3306 65.9771L44.1768 43.8232L44 44L43.8232 44.1768L65.9771 66.3306L66.1538 66.1538ZM66.1538 66.1538L66.3306 66.3306L88.4844 44.1768L88.3077 44L88.1309 43.8232L65.9771 65.9771L66.1538 66.1538ZM66.1538 66.1538L65.9771 65.9771L43.8232 88.1309L44 88.3077L44.1768 88.4844L66.3306 66.3306L66.1538 66.1538ZM66.1538 66.1538L65.9771 66.3306L88.1309 88.4844L88.3077 88.3077L88.4844 88.1309L66.3306 65.9771L66.1538 66.1538Z" fill="currentColor"/>
+              <path d="M66 71C68.7614 71 71 68.7614 71 66C71 63.2386 68.7614 61 66 61C63.2386 61 61 63.2386 61 66C61 68.7614 63.2386 71 66 71Z" fill="currentColor"/>
+              <path d="M66 59V76" stroke="currentColor"/>
+              <path d="M59 66H74" stroke="currentColor"/>
+            </svg>
             <span className="font-display text-[0.7rem] font-bold tracking-[0.16em] uppercase text-gd-300">
               The Classical Way
             </span>

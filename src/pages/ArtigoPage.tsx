@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { Mail, Share2 } from "lucide-react";
+import SEOHead from "@/components/SEOHead";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import { supabase } from "@/lib/supabase";
@@ -118,8 +119,20 @@ const ArtigoPage = () => {
 
   const authorLink = article.authors?.slug ? `/autores/${article.authors.slug}` : null;
 
+  const seoDescription = article.content
+    .replace(/<[^>]+>/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .slice(0, 155);
+
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title={`${article.title} — The Classical Way`}
+        description={seoDescription}
+        canonical={`https://theclassicalway.com.br/artigos/${article.slug}`}
+        ogImage={article.cover_url || undefined}
+      />
       <SiteHeader />
 
       {/* Breadcrumb */}

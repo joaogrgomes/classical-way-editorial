@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
+import SEOHead from "@/components/SEOHead";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import { supabase } from "@/lib/supabase";
@@ -80,8 +81,19 @@ const AutorPage = () => {
 
   if (!author) return null;
 
+  const seoDescription = author.bio
+    ? author.bio.slice(0, 155)
+    : `Artigos de ${author.name} no The Classical Way.`;
+
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title={`${author.name} — The Classical Way`}
+        description={seoDescription}
+        canonical={`https://theclassicalway.com.br/autores/${author.slug}`}
+        ogImage={author.photo_url || undefined}
+        ogType="website"
+      />
       <SiteHeader />
 
       {/* Hero do autor */}

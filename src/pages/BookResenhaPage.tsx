@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
+import SEOHead from "@/components/SEOHead";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import { supabase } from "@/lib/supabase";
@@ -74,8 +75,18 @@ const BookResenhaPage = () => {
 
   if (!review) return null;
 
+  const seoDescription = `Resenha de "${review.book_title}", de ${review.book_author}. ${
+    review.content.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim().slice(0, 110)
+  }`;
+
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title={`${review.title} — The Classical Way`}
+        description={seoDescription}
+        canonical={`https://theclassicalway.com.br/resenhas/${review.slug}`}
+        ogImage={review.cover_url || undefined}
+      />
       <SiteHeader />
 
       {/* Hero */}
