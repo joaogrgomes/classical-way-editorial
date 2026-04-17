@@ -32,7 +32,7 @@ const BookReviewsPage = () => {
     async function fetchReviews() {
       const { data } = await supabase
         .from("reviews")
-        .select("id, title, slug, book_title, book_author, cover_url, content, created_at, authors(name)")
+        .select("id, title, slug, book_title, book_author, cover_url, created_at, authors(name)")
         .eq("status", "published")
         .order("created_at", { ascending: false });
       setReviews((data as unknown as Review[]) || []);

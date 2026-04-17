@@ -33,7 +33,36 @@ const ArticlesSection = () => {
   const formatDate = (dateStr: string) =>
     new Date(dateStr).toLocaleDateString("pt-BR", { day: "2-digit", month: "short", year: "numeric" });
 
-  if (loading || articles.length === 0) return null;
+  if (loading) return (
+    <section className="py-12 lg:py-16">
+      <div className="max-w-[1120px] mx-auto px-[clamp(16px,4vw,48px)]">
+        <div className="flex items-center justify-between mb-7">
+          <div className="flex items-center gap-3.5">
+            <div className="w-8 h-0.5 bg-bx-700 flex-shrink-0" />
+            <span className="font-display text-[0.6rem] tracking-[0.24em] uppercase text-gy-900 font-semibold">
+              Artigos Recentes
+            </span>
+          </div>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {[0, 1, 2].map((i) => (
+            <div key={i} className="flex flex-col animate-pulse">
+              <div className="aspect-[4/3] bg-gray-200 mb-3.5" />
+              <div className="h-2 bg-gray-200 w-1/3 mb-2" />
+              <div className="h-5 bg-gray-200 w-full mb-1" />
+              <div className="h-5 bg-gray-200 w-4/5 mb-3" />
+              <div className="flex justify-between mt-auto">
+                <div className="h-2 bg-gray-200 w-1/4" />
+                <div className="h-2 bg-gray-200 w-1/5" />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+
+  if (articles.length === 0) return null;
 
   return (
     <section className="py-12 lg:py-16" id="artigos">

@@ -65,23 +65,23 @@ const ArtigoPage = () => {
   }, [slug]);
 
   async function fetchArticle() {
-    const { data } = await supabase
-      .from("articles")
-      .select("*, authors(name, bio, slug, photo_url)")
-      .eq("slug", slug)
-      .eq("status", "published")
-      .single();
+    const [{ data }, { data: relatedData }] = await Promise.all([
+      supabase
+        .from("articles")
+        .select("*, authors(name, bio, slug, photo_url)")
+        .eq("slug", slug)
+        .eq("status", "published")
+        .single(),
+      supabase
+        .from("articles")
+        .select("id, title, slug, category, cover_url, created_at, authors(name)")
+        .eq("status", "published")
+        .neq("slug", slug)
+        .limit(3),
+    ]);
 
     if (!data) { navigate("/artigos"); return; }
     setArticle(data as unknown as Article);
-
-    const { data: relatedData } = await supabase
-      .from("articles")
-      .select("id, title, slug, category, cover_url, created_at, authors(name)")
-      .eq("status", "published")
-      .neq("slug", slug)
-      .limit(3);
-
     setRelated((relatedData as unknown as Article[]) || []);
     setLoading(false);
   }

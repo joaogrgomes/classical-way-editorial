@@ -41,7 +41,33 @@ const BookReviewSection = () => {
     fetchReviews();
   }, []);
 
-  if (loading || reviews.length === 0) return null;
+  if (loading) return (
+    <section className="py-14 lg:py-20">
+      <div className="max-w-[1120px] mx-auto px-[clamp(16px,4vw,48px)]">
+        <div className="flex items-center justify-between mb-8">
+          <div className="flex items-center gap-3">
+            <span className="w-8 h-[3px] bg-bx-700" />
+            <span className="font-display uppercase text-[0.6rem] tracking-[0.18em] text-gy-900">
+              Book Review
+            </span>
+          </div>
+        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {[0, 1, 2].map((i) => (
+            <div key={i} className="flex flex-col animate-pulse">
+              <div className="aspect-[2/3] bg-gray-200 mb-4" />
+              <div className="h-2 bg-gray-200 w-1/4 mb-2" />
+              <div className="h-5 bg-gray-200 w-full mb-1" />
+              <div className="h-5 bg-gray-200 w-3/5 mb-3" />
+              <div className="h-2 bg-gray-200 w-2/5 mt-auto" />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+
+  if (reviews.length === 0) return null;
 
   return (
     <section className="py-14 lg:py-20">
