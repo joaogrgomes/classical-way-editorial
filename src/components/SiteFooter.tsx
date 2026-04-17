@@ -37,7 +37,7 @@ const SiteFooter = () => (
               The Classical Way
             </span>
           </div>
-          <p className="font-body text-[0.95rem] text-white/40 leading-[1.7] max-w-[40ch] mb-5">
+          <p className="font-body text-[0.95rem] text-white/65 leading-[1.7] max-w-[40ch] mb-5">
             Formando mentes e almas para a glória de Deus através da herança viva da educação cristã clássica.
           </p>
           <div className="flex gap-2">
@@ -57,13 +57,13 @@ const SiteFooter = () => (
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-8">
           {footerCols.map((col) => (
             <div key={col.title}>
-              <p className="font-display text-[0.55rem] tracking-[0.2em] uppercase text-white/30 mb-4">
+              <p className="font-display text-[0.55rem] tracking-[0.2em] uppercase text-white/60 mb-4">
                 {col.title}
               </p>
               <ul className="space-y-2.5">
                 {col.links.map((link) => (
                   <li key={link}>
-                    <a href="#" className="font-body text-[1.06rem] text-white/40 hover:text-gd-500 transition-colors">
+                    <a href="#" className="font-body text-[1.06rem] text-white/65 hover:text-gd-500 transition-colors">
                       {link}
                     </a>
                   </li>
@@ -76,10 +76,10 @@ const SiteFooter = () => (
 
       {/* Bottom */}
       <div className="border-t border-white/[0.06] pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p className="font-display text-[0.6rem] tracking-[0.12em] uppercase text-white/20">
+        <p className="font-display text-[0.6rem] tracking-[0.12em] uppercase text-white/55">
           © 2026 The Classical Way. Todos os direitos reservados.
         </p>
-        <p className="font-display text-[0.55rem] tracking-[0.22em] uppercase text-gd-700/60 italic">
+        <p className="font-display text-[0.55rem] tracking-[0.22em] uppercase text-gd-300 italic">
           Soli Deo Gloria
         </p>
       </div>

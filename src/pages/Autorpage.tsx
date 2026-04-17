@@ -168,7 +168,7 @@ const AutorPage = () => {
                 <h3 className="font-heading text-[1.2rem] font-semibold italic text-gy-900 leading-[1.25] mb-2 group-hover:text-bx-700 transition-colors">
                   {article.title}
                 </h3>
-                <span className="font-display text-[0.5rem] tracking-[0.1em] uppercase text-gy-300">
+                <span className="font-display text-[0.5rem] tracking-[0.1em] uppercase text-gy-600">
                   {formatDate(article.published_at || article.created_at)}
                 </span>
               </Link>

@@ -19,12 +19,12 @@ const HeroBanner = () => (
       <h2 className="font-heading text-[clamp(1.92rem,4.8vw,3.36rem)] italic font-bold text-white/95 leading-[1.15] max-w-[680px] mb-4">
         A educação clássica como caminho de formação integral da alma
       </h2>
-      <p className="font-body text-[1.26rem] text-white/60 max-w-[520px] leading-[1.7] mb-6">
+      <p className="font-body text-[1.26rem] text-white/60 max-w-[520px] leading-[1.85] mb-6">
         Um convite à redescoberta das artes liberais, da contemplação e do cultivo da virtude como fundamentos da verdadeira educação.
       </p>
       <Link
         to="/artigos"
-        className="inline-block font-display text-[0.62rem] tracking-[0.16em] uppercase bg-gd-700 text-white px-5 py-[9px] hover:bg-gd-600 transition-colors"
+        className="inline-block font-display text-[0.62rem] tracking-[0.16em] uppercase bg-bx-700 text-white px-5 py-[9px] hover:bg-bx-900 transition-colors"
       >
         Ler artigo →
       </Link>

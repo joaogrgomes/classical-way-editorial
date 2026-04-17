@@ -102,7 +102,7 @@ const BookResenhaPage = () => {
               </p>
               <StarRating count={5} />
               <div className="w-full h-px bg-gy-200 my-4" />
-              <p className="font-display text-[0.55rem] tracking-[0.12em] uppercase text-gy-400">
+              <p className="font-display text-[0.55rem] tracking-[0.12em] uppercase text-gy-600">
                 Resenha por {review.authors?.name} · {formatDate(review.created_at)}
               </p>
             </div>

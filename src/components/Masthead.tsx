@@ -4,7 +4,7 @@ const Masthead = () => (
       <h1 className="font-display font-bold text-[clamp(32px,6.5vw,80px)] tracking-[0.1em] uppercase text-bx-800 leading-none">
         The Classical Way
       </h1>
-      <span className="font-display text-[0.62rem] tracking-[0.32em] uppercase text-gd-700 mt-1.5 mb-4 block">
+      <span className="font-display text-[0.62rem] tracking-[0.32em] uppercase text-gd-900 mt-1.5 mb-4 block">
         Veritas &nbsp;·&nbsp; Bonitas &nbsp;·&nbsp; Pulchritudo
       </span>
       <div className="flex items-center justify-center gap-2.5 mb-0">

@@ -49,7 +49,7 @@ const SiteHeader = () => {
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
 
   const linkClass =
-    "font-display text-[0.6rem] tracking-[0.14em] uppercase text-bx-700 px-3.5 py-2.5 transition-colors duration-200 hover:text-gd-500";
+    "font-display text-[0.6rem] tracking-[0.14em] uppercase text-bx-700 px-3.5 py-2.5 transition-colors duration-200 hover:text-gd-700";
 
   const renderLink = (href: string, label: string, className: string, onClick?: () => void) =>
     href.startsWith("/") ? (
@@ -137,7 +137,7 @@ const SiteHeader = () => {
           </Link>
           <Link
             to="/apoiar"
-            className="hidden sm:block font-display text-[0.6rem] tracking-[0.16em] uppercase bg-gd-700 text-white px-3.5 py-[7px] hover:bg-gd-600 transition-colors"
+            className="hidden sm:block font-display text-[0.6rem] tracking-[0.16em] uppercase bg-bx-700 text-white px-3.5 py-[7px] hover:bg-bx-900 transition-colors"
           >
             Apoiar
           </Link>
@@ -166,7 +166,7 @@ const SiteHeader = () => {
                         className={`block font-display text-[0.6rem] tracking-[0.14em] uppercase py-2 hover:text-bx-700 transition-colors ${
                           child.distinguished
                             ? "text-bx-700 font-semibold border-b border-gy-200 mb-1 pb-2.5"
-                            : "text-gy-500"
+                            : "text-gy-700"
                         }`}
                         onClick={() => setMobileOpen(false)}
                       >
@@ -181,7 +181,7 @@ const SiteHeader = () => {
                 {renderLink(
                   item.href!,
                   item.label,
-                  "block font-display text-[0.67rem] tracking-[0.14em] uppercase text-bx-700 py-2.5 hover:text-gd-500 transition-colors",
+                  "block font-display text-[0.67rem] tracking-[0.14em] uppercase text-bx-700 py-2.5 hover:text-gd-700 transition-colors",
                   () => setMobileOpen(false)
                 )}
               </div>

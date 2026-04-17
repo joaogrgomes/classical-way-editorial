@@ -42,7 +42,7 @@ const EssaysSection = () => (
             Ensaios Fundamentais
           </span>
         </div>
-        <a href="/ensaios" className="font-display text-[0.6rem] tracking-[0.14em] uppercase text-white/35 hover:text-gd-500 transition-colors">
+        <a href="/ensaios" className="font-display text-[0.6rem] tracking-[0.14em] uppercase text-white/60 hover:text-gd-500 transition-colors">
           Ver biblioteca →
         </a>
       </div>
@@ -63,7 +63,7 @@ const EssaysSection = () => (
             <h3 className="font-heading text-[1.32rem] font-semibold text-white/[0.88] mb-2.5">
               {essay.title}
             </h3>
-            <p className="font-body text-[0.9rem] text-white/[0.42] leading-[1.65]">
+            <p className="font-body text-[0.9rem] text-white/60 leading-[1.65]">
               {essay.desc}
             </p>
           </article>

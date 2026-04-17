@@ -162,8 +162,8 @@ const ArtigosPage = () => {
                     {article.title}
                   </h2>
                   <div className="flex justify-between items-center">
-                    <span className="font-display text-[0.55rem] tracking-[0.12em] uppercase text-gy-400">{article.authors?.name}</span>
-                    <span className="font-display text-[0.55rem] tracking-[0.1em] uppercase text-gy-300">{formatDate(article.published_at || article.created_at)}</span>
+                    <span className="font-display text-[0.55rem] tracking-[0.12em] uppercase text-gy-600">{article.authors?.name}</span>
+                    <span className="font-display text-[0.55rem] tracking-[0.1em] uppercase text-gy-600">{formatDate(article.published_at || article.created_at)}</span>
                   </div>
                 </Link>
               ))}

@@ -84,7 +84,7 @@ const FrontpageHero = () => (
             <span className="font-heading text-[0.95rem] font-semibold text-gy-900 leading-[1.25]">
               {item.title}
             </span>
-            <span className="font-body text-[0.85rem] text-gy-500 leading-[1.5]">
+            <span className="font-body text-[1rem] text-gy-700 leading-[1.5]">
               {item.excerpt}
             </span>
             <span className="font-display text-[0.53rem] tracking-[0.12em] uppercase text-gy-300">

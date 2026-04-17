@@ -102,7 +102,7 @@ const BookReviewSection = () => {
               <p className="font-display uppercase text-gy-400 text-[0.55rem] tracking-[0.12em] mt-1">{review.book_author}</p>
 
               <div className="flex items-center justify-between mt-4">
-                <span className="font-display uppercase text-gy-400 text-[0.55rem] tracking-[0.1em]">
+                <span className="font-display uppercase text-gy-600 text-[0.55rem] tracking-[0.1em]">
                   {review.authors?.name}
                 </span>
                 <Link to={`/resenhas/${review.slug}`} className="font-display uppercase text-[0.55rem] tracking-[0.1em] text-bx-700 hover:text-bx-900 transition-colors">

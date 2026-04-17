@@ -135,7 +135,7 @@ const PodcastPage = () => {
                 <div className="relative" ref={subRef}>
                   <button
                     onClick={() => setSubOpen(!subOpen)}
-                    className="bg-gd-700 text-white font-display text-[0.6rem] tracking-[0.16em] uppercase px-4 py-2 flex items-center gap-2 transition-colors hover:bg-gd-600"
+                    className="bg-bx-700 text-white font-display text-[0.6rem] tracking-[0.16em] uppercase px-4 py-2 flex items-center gap-2 transition-colors hover:bg-bx-900"
                   >
                     Inscrever-se <ChevronDown size={12} />
                   </button>
@@ -221,10 +221,10 @@ const PodcastPage = () => {
                       <h2 className="font-heading text-[1.26rem] font-semibold italic text-gy-900 leading-[1.3] mb-2 group-hover:text-bx-700 transition-colors">
                         {ep.title}
                       </h2>
-                      <p className="font-body text-[1.06rem] text-gy-500 leading-[1.6] mb-3 line-clamp-2">
+                      <p className="font-body text-[1.06rem] text-gy-700 leading-[1.85] mb-3 line-clamp-2">
                         {ep.desc}
                       </p>
-                      <div className="font-display text-[0.55rem] tracking-[0.1em] uppercase text-gy-400 flex gap-2 flex-wrap">
+                      <div className="font-display text-[0.55rem] tracking-[0.1em] uppercase text-gy-600 flex gap-2 flex-wrap">
                         <span>{ep.duration}</span>
                         <span className="text-gy-200">·</span>
                         <span>{ep.date}</span>

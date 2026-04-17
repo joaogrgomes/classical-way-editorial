@@ -18,7 +18,7 @@ const NewsletterBanner = () => {
           <h2 className="font-display text-[clamp(1.4rem,3vw,2rem)] font-bold tracking-[0.06em] uppercase text-white leading-[1.1] mb-4">
             A Rota Clássica
           </h2>
-          <p className="font-body text-base text-white/50 leading-[1.75] max-w-[50ch]">
+          <p className="font-body text-base text-white/50 leading-[1.85] max-w-[50ch]">
             Toda semana: um artigo aprofundado, uma recomendação de leitura clássica, um recurso para o educador e uma reflexão sobre a tradição cristã. Sem spam — apenas substância, beleza e verdade.
           </p>
         </div>
@@ -40,12 +40,12 @@ const NewsletterBanner = () => {
             <button
               type="submit"
               disabled={submitted}
-              className="font-display text-[0.6rem] tracking-[0.14em] uppercase bg-gd-700 text-white px-6 py-3 hover:bg-gd-600 transition-colors disabled:bg-emerald-700 disabled:cursor-default whitespace-nowrap"
+              className="font-display text-[0.6rem] tracking-[0.14em] uppercase bg-bx-700 text-white px-6 py-3 hover:bg-bx-900 transition-colors disabled:bg-emerald-700 disabled:cursor-default whitespace-nowrap"
             >
               {submitted ? "✓ Inscrito!" : "Assinar"}
             </button>
           </div>
-          <p className="font-display text-[0.6rem] tracking-[0.1em] uppercase text-white/25">
+          <p className="font-display text-[0.6rem] tracking-[0.1em] uppercase text-white/55">
             Seus dados estão seguros. Cancele quando quiser.
           </p>
         </form>

@@ -214,7 +214,7 @@ const ArtigoPage = () => {
       {/* Share bar */}
       <div className="border-b border-gy-100 bg-background sticky top-[58px] z-30">
         <div className="max-w-[1120px] mx-auto px-[clamp(16px,4vw,48px)] h-[46px] flex items-center justify-between">
-          <span className="font-display text-[0.48rem] tracking-[0.14em] uppercase text-gy-400">
+          <span className="font-display text-[0.48rem] tracking-[0.14em] uppercase text-gy-600">
             Compartilhar
           </span>
           <div className="flex items-center gap-1">
@@ -276,7 +276,7 @@ const ArtigoPage = () => {
               prose-blockquote:border-l-4 prose-blockquote:border-gd-600 prose-blockquote:pl-6
               prose-blockquote:bg-surface-warm prose-blockquote:py-4 prose-blockquote:pr-4
               prose-blockquote:font-heading prose-blockquote:italic prose-blockquote:text-gy-700
-              prose-a:text-bx-700 prose-a:no-underline hover:prose-a:text-bx-600
+              prose-a:text-bx-700 hover:prose-a:text-bx-600
               prose-strong:text-gy-900"
             dangerouslySetInnerHTML={{ __html: article.content }}
           />

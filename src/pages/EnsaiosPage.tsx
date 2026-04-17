@@ -147,21 +147,21 @@ const EnsaiosPage = () => {
                       {essay.num}
                     </span>
                     <div className="flex-1">
-                      <span className="font-display text-[0.53rem] tracking-[0.16em] uppercase text-gd-700 font-semibold mb-2 block">
+                      <span className="font-display text-[0.53rem] tracking-[0.16em] uppercase text-gd-900 font-semibold mb-2 block">
                         {essay.category}
                       </span>
                       <h2 className="font-heading text-[1.25rem] font-semibold italic text-gy-900 leading-[1.25] mb-2.5 group-hover:text-bx-700 transition-colors">
                         {essay.title}
                       </h2>
-                      <p className="font-body text-[0.95rem] text-gy-500 leading-[1.65] mb-3">
+                      <p className="font-body text-[0.95rem] text-gy-700 leading-[1.85] mb-3">
                         {essay.desc}
                       </p>
                       <div className="flex items-center gap-3 flex-wrap">
-                        <span className="font-display text-[0.55rem] tracking-[0.12em] uppercase text-gy-400">{essay.author}</span>
+                        <span className="font-display text-[0.55rem] tracking-[0.12em] uppercase text-gy-600">{essay.author}</span>
                         <span className="text-gy-200">·</span>
-                        <span className="font-display text-[0.55rem] tracking-[0.1em] uppercase text-gy-300">{essay.date}</span>
+                        <span className="font-display text-[0.55rem] tracking-[0.1em] uppercase text-gy-600">{essay.date}</span>
                         <span className="text-gy-200">·</span>
-                        <span className="font-display text-[0.55rem] tracking-[0.1em] uppercase text-gy-300">{essay.readTime}</span>
+                        <span className="font-display text-[0.55rem] tracking-[0.1em] uppercase text-gy-600">{essay.readTime}</span>
                       </div>
                     </div>
                   </div>

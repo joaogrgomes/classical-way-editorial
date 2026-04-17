@@ -97,8 +97,8 @@ const ArticlesSection = () => {
                 {article.title}
               </h3>
               <div className="flex justify-between items-center mt-auto">
-                <span className="font-display text-[0.55rem] tracking-[0.12em] uppercase text-gy-400">{article.authors?.name}</span>
-                <span className="font-display text-[0.55rem] tracking-[0.1em] uppercase text-gy-300">{formatDate(article.created_at)}</span>
+                <span className="font-display text-[0.55rem] tracking-[0.12em] uppercase text-gy-600">{article.authors?.name}</span>
+                <span className="font-display text-[0.55rem] tracking-[0.1em] uppercase text-gy-600">{formatDate(article.created_at)}</span>
               </div>
             </Link>
           ))}
