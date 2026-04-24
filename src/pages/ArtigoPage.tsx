@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Mail, Share2 } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import SiteHeader from "@/components/SiteHeader";
@@ -27,9 +27,83 @@ type Article = {
 const FALLBACK_IMAGE =
   "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Folio_27r_-_The_Book_of_Kells.jpg/800px-Folio_27r_-_The_Book_of_Kells.jpg";
 
+const MOCK_ARTICLE: Article = {
+  id: "mock-1",
+  title: "A Formação do Caráter como Fundamento da Educação Clássica",
+  slug: "formacao-do-carater-educacao-classica",
+  category: "Educação Clássica",
+  cover_url: FALLBACK_IMAGE,
+  content: `
+    <p>A educação clássica parte de uma premissa radicalmente diferente da pedagogia moderna: o objetivo central do ensino não é a transmissão de informações, mas a formação da alma. Aristóteles já ensinava que o homem bem educado é aquele cujos apetites foram treinados para desejar o que é verdadeiramente bom.</p>
+    <h2>O Trivium como Estrutura da Mente</h2>
+    <p>O Trivium — Gramática, Dialética e Retórica — não era apenas um currículo. Era uma metodologia de formação do pensamento. Cada estágio corresponde a uma fase do desenvolvimento cognitivo e moral da criança.</p>
+    <blockquote>
+      "O homem que não sabe o que aconteceu antes de nascer permanece para sempre criança." — Cícero
+    </blockquote>
+    <p>Na fase da Gramática, a criança aprende os fatos fundamentais de cada disciplina. Na Dialética, começa a questionar e organizar o conhecimento. Na Retórica, aprende a expressar verdades com beleza e persuasão.</p>
+    <h2>Virtude não se Ensina, se Pratica</h2>
+    <p>Um dos pilares da educação clássica é a convicção aristotélica de que a virtude é um <em>hábito</em>, não um conhecimento abstrato. Não basta saber que a coragem é boa — é preciso praticar atos corajosos até que a coragem se torne segunda natureza.</p>
+    <p>Isso tem implicações profundas para a sala de aula. O professor clássico não é apenas um instrutor de conteúdo; é um formador de caráter. Cada interação, cada texto escolhido, cada debate conduzido é uma oportunidade de cultivar a alma do aluno.</p>
+    <h2>Os Grandes Livros como Mestres Imortais</h2>
+    <p>A tradição do <em>Great Books</em> repousa sobre uma convicção simples: os melhores mestres da humanidade deixaram seus ensinamentos em livros. Homero, Platão, Virgílio, Santo Agostinho, Dante — esses autores não são relíquias de museu, mas interlocutores vivos que têm muito a dizer ao homem contemporâneo.</p>
+    <p>Lê-los com atenção é participar da grande conversa que atravessa os séculos. É ser formado por mentes superiores que enfrentaram as mesmas questões fundamentais que enfrentamos hoje.</p>
+  `,
+  published_at: "2026-03-10T10:00:00Z",
+  created_at: "2026-03-10T10:00:00Z",
+  authors: {
+    name: "Pedro Albuquerque",
+    bio: "Mestre em Filosofia pela PUC-Rio, professor de humanidades e pesquisador da tradição educacional clássica. Colaborador regular do Classical Way.",
+    slug: "pedro-albuquerque",
+    photo_url: undefined,
+  },
+  editors_note:
+    "Este artigo faz parte de nossa série sobre os fundamentos da Educação Cristã Clássica, publicada em parceria com o Instituto Clássico Brasileiro.",
+  featured_book_title: "Educação Clássica",
+  featured_book_author: "Gene Edward Veith Jr. & Andrew Kern",
+  featured_book_cover_url: undefined,
+  featured_book_amazon_url: "https://www.amazon.com.br",
+  featured_book_description:
+    "Uma introdução acessível e aprofundada aos princípios, história e prática da educação clássica cristã. Indispensável para pais e educadores.",
+};
+
+const MOCK_RELATED: Article[] = [
+  {
+    id: "mock-2",
+    title: "Por que Ler os Clássicos? Uma Defesa da Literatura Antiga",
+    slug: "por-que-ler-os-classicos",
+    category: "Literatura",
+    cover_url: FALLBACK_IMAGE,
+    content: "",
+    published_at: "2026-02-20T10:00:00Z",
+    created_at: "2026-02-20T10:00:00Z",
+    authors: { name: "Ana Cristina Moura", bio: "", slug: "ana-cristina-moura" },
+  },
+  {
+    id: "mock-3",
+    title: "O Papel da Memória na Tradição Retórica Ocidental",
+    slug: "papel-da-memoria-retorica",
+    category: "Retórica",
+    cover_url: FALLBACK_IMAGE,
+    content: "",
+    published_at: "2026-02-05T10:00:00Z",
+    created_at: "2026-02-05T10:00:00Z",
+    authors: { name: "Marcos Figueiredo", bio: "", slug: "marcos-figueiredo" },
+  },
+  {
+    id: "mock-4",
+    title: "Agostinho e a Ordem do Amor como Fundamento Moral",
+    slug: "agostinho-ordem-do-amor",
+    category: "Filosofia",
+    cover_url: FALLBACK_IMAGE,
+    content: "",
+    published_at: "2026-01-18T10:00:00Z",
+    created_at: "2026-01-18T10:00:00Z",
+    authors: { name: "Pedro Albuquerque", bio: "", slug: "pedro-albuquerque" },
+  },
+];
+
 const ArtigoPage = () => {
   const { slug } = useParams();
-  const navigate = useNavigate();
   const [article, setArticle] = useState<Article | null>(null);
   const [related, setRelated] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
@@ -80,7 +154,12 @@ const ArtigoPage = () => {
         .limit(3),
     ]);
 
-    if (!data) { navigate("/artigos"); return; }
+    if (!data) {
+      setArticle(MOCK_ARTICLE);
+      setRelated(MOCK_RELATED);
+      setLoading(false);
+      return;
+    }
     setArticle(data as unknown as Article);
     setRelated((relatedData as unknown as Article[]) || []);
     setLoading(false);

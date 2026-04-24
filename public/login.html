@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Classical Way — Acesso</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --color-bg: #faf8f4;
+      --color-surface: #f2ede4;
+      --color-border: #d4c9b0;
+      --color-text: #1a1714;
+      --color-text-muted: #6b6258;
+      --color-accent: #2c1f14;
+      --color-accent-hover: #1a1209;
+      --color-error: #7a2020;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      font-family: 'EB Garamond', Georgia, serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .logotype {
+      font-family: 'Cinzel', Georgia, serif;
+      font-weight: 400;
+      font-size: 1.125rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-text);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .divider {
+      width: 2.5rem;
+      height: 1px;
+      background: var(--color-border);
+      margin: 1rem auto;
+    }
+
+    .subtitle {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--color-text-muted);
+      letter-spacing: 0.02em;
+    }
+
+    .card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      padding: 2rem;
+    }
+
+    .label {
+      display: block;
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      margin-bottom: 0.625rem;
+    }
+
+    .input {
+      display: block;
+      width: 100%;
+      padding: 0.625rem 0.75rem;
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1rem;
+      color: var(--color-text);
+      background: var(--color-bg);
+      border: 1px solid var(--color-border);
+      border-radius: 0;
+      outline: none;
+      transition: border-color 0.15s;
+      -webkit-appearance: none;
+    }
+
+    .input:focus {
+      border-color: var(--color-accent);
+    }
+
+    .button {
+      display: block;
+      width: 100%;
+      margin-top: 1.25rem;
+      padding: 0.75rem 1rem;
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-bg);
+      background: var(--color-accent);
+      border: 1px solid var(--color-accent);
+      border-radius: 0;
+      cursor: pointer;
+      transition: background-color 0.15s, border-color 0.15s;
+    }
+
+    .button:hover {
+      background: var(--color-accent-hover);
+      border-color: var(--color-accent-hover);
+    }
+
+    .button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .error {
+      display: none;
+      margin-top: 1rem;
+      font-family: 'EB Garamond', Georgia, serif;
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--color-error);
+      text-align: center;
+    }
+
+    .error.visible {
+      display: block;
+    }
+
+    .footer {
+      margin-top: 1.5rem;
+      text-align: center;
+      font-family: 'EB Garamond', Georgia, serif;
+      font-style: italic;
+      font-size: 0.825rem;
+      color: var(--color-text-muted);
+      letter-spacing: 0.01em;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <span class="logotype">The Classical Way</span>
+      <div class="divider"></div>
+      <span class="subtitle">Acesso restrito</span>
+    </div>
+
+    <div class="card">
+      <label class="label" for="senha">Senha de acesso</label>
+      <input
+        class="input"
+        type="password"
+        id="senha"
+        name="senha"
+        autocomplete="current-password"
+        autofocus
+      />
+      <button class="button" id="btn" type="button">Entrar</button>
+      <p class="error" id="erro">Senha incorreta. Tente novamente.</p>
+    </div>
+
+    <p class="footer">Publicação de acesso por convite</p>
+  </div>
+
+  <script>
+    const input = document.getElementById('senha')
+    const btn = document.getElementById('btn')
+    const erro = document.getElementById('erro')
+
+    async function autenticar() {
+      const senha = input.value.trim()
+      if (!senha) return
+
+      btn.disabled = true
+      erro.classList.remove('visible')
+
+      try {
+        const res = await fetch('/api/auth', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ senha }),
+          redirect: 'follow',
+        })
+
+        if (res.ok || res.redirected) {
+          window.location.href = res.url || '/'
+          return
+        }
+
+        erro.classList.add('visible')
+        input.value = ''
+        input.focus()
+      } catch {
+        erro.textContent = 'Erro de conexão. Tente novamente.'
+        erro.classList.add('visible')
+      } finally {
+        btn.disabled = false
+      }
+    }
+
+    btn.addEventListener('click', autenticar)
+    input.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') autenticar()
+    })
+  </script>
+</body>
+</html>
