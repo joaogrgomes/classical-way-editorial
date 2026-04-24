@@ -247,15 +247,29 @@ const BuscaPage = () => {
     <div className="min-h-screen bg-background">
       <SiteHeader />
 
-      {/* Page header */}
-      <div className="bg-bx-900 py-14 lg:py-20">
-        <div className="max-w-[1120px] mx-auto px-[clamp(16px,4vw,48px)]">
-          <h1 className="font-heading text-[clamp(2rem,4.8vw,3.2rem)] italic font-semibold text-white/[0.92] leading-[1.15] mb-3">
-            Busca
-          </h1>
-          <p className="font-body text-[1.15rem] text-white/[0.45] max-w-[52ch] leading-[1.7]">
-            Encontre artigos, podcasts, resenhas e outros conteúdos do Classical Way.
-          </p>
+      {/* Search hero */}
+      <div className="bg-bx-900">
+        <div className="max-w-[1120px] mx-auto px-[clamp(16px,4vw,48px)] py-10 lg:py-12">
+          <div className="flex items-center gap-4 border-b border-white/20">
+            <Search size={30} className="text-white/40 flex-shrink-0 mb-1" strokeWidth={1.5} />
+            <input
+              type="text"
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+              placeholder="Buscar em The Classical Way…"
+              className="flex-1 font-heading text-3xl lg:text-4xl text-white/90 bg-transparent py-4 focus:outline-none placeholder:text-white/30"
+              autoFocus
+            />
+            {inputValue && (
+              <button
+                onClick={() => setInputValue("")}
+                className="text-white/40 hover:text-white/80 transition-colors flex-shrink-0 mb-1"
+                aria-label="Limpar busca"
+              >
+                <X size={22} />
+              </button>
+            )}
+          </div>
         </div>
       </div>
 
@@ -285,31 +299,6 @@ const BuscaPage = () => {
                   </span>
                 )}
               </button>
-            </div>
-
-            {/* Search bar */}
-            <div className="relative mb-5">
-              <Search
-                size={15}
-                className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gy-400 pointer-events-none"
-              />
-              <input
-                type="text"
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                placeholder="Buscar no Classical Way..."
-                className="w-full border border-gy-200 pl-10 pr-10 py-3 font-body text-[1.05rem] text-gy-800 bg-background focus:outline-none focus:border-bx-600 transition-colors placeholder:text-gy-300"
-                autoFocus={!!queryFromUrl}
-              />
-              {inputValue && (
-                <button
-                  onClick={() => setInputValue("")}
-                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gy-400 hover:text-bx-700 transition-colors"
-                  aria-label="Limpar busca"
-                >
-                  <X size={15} />
-                </button>
-              )}
             </div>
 
             {/* Empty state — no query, no filters */}
