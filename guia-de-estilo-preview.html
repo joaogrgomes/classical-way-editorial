@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guia de Estilo Editorial — Todas as Possibilidades — The Classical Way</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── CSS Variables ─── */
+    :root {
+      --bx-900: hsl(343, 57%, 14%);
+      --bx-800: hsl(343, 53%, 23%);
+      --bx-700: hsl(343, 55%, 30%);
+      --bx-600: hsl(343, 52%, 40%);
+      --bx-400: hsl(343, 44%, 57%);
+      --bx-200: hsl(343, 47%, 81%);
+      --bx-100: hsl(343, 52%, 91%);
+
+      --gd-900: hsl(36, 71%, 21%);
+      --gd-800: hsl(36, 67%, 29%);
+      --gd-700: hsl(36, 60%, 41%);
+      --gd-600: hsl(36, 55%, 51%);
+      --gd-500: hsl(40, 65%, 64%);
+      --gd-300: hsl(40, 64%, 77%);
+      --gd-100: hsl(40, 71%, 91%);
+
+      --gy-950: hsl(30, 4%, 7%);
+      --gy-900: hsl(30, 6%, 11%);
+      --gy-800: hsl(30, 5%, 17%);
+      --gy-700: hsl(30, 3%, 23%);
+      --gy-600: hsl(27, 5%, 32%);
+      --gy-500: hsl(27, 4%, 40%);
+      --gy-400: hsl(27, 4%, 52%);
+      --gy-300: hsl(27, 4%, 67%);
+      --gy-200: hsl(30, 6%, 78%);
+      --gy-100: hsl(30, 8%, 88%);
+      --gy-50:  hsl(30, 9%, 93%);
+
+      --surface:           hsl(36, 33%, 98%);
+      --surface-warm:      hsl(36, 28%, 94%);
+      --surface-parchment: hsl(38, 30%, 89%);
+    }
+
+    /* ─── Reset ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--surface);
+      color: var(--gy-900);
+      font-family: 'EB Garamond', Garamond, Georgia, serif;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ─── Header ─── */
+    .site-header {
+      background: var(--bx-900);
+      height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(16px, 4vw, 48px);
+    }
+    .site-header .logo {
+      font-family: 'Cinzel', serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #fff;
+    }
+    .site-header nav {
+      display: flex;
+      gap: 24px;
+    }
+    .site-header nav a {
+      font-family: 'Cinzel', serif;
+      font-size: 0.48rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+    }
+
+    /* ─── Breadcrumb ─── */
+    .breadcrumb {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 20px clamp(16px,4vw,48px) 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Cinzel', serif;
+      font-size: 0.5rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gy-400);
+    }
+    .breadcrumb a:hover { color: var(--bx-700); }
+    .breadcrumb .active { color: var(--bx-600); }
+
+    /* ─── Hero ─── */
+    .hero {
+      position: relative;
+      min-height: 480px;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+      background-image: url('https://svodiyvilnzryvkpbbsw.supabase.co/storage/v1/object/public/covers/1775848251691.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, hsla(343,57%,14%,0.95) 0%, hsla(343,57%,14%,0.60) 50%, hsla(343,57%,14%,0.20) 100%);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 96px clamp(16px,4vw,48px) 48px;
+    }
+    .hero-category {
+      font-family: 'Cinzel', serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gd-500);
+      display: block;
+      margin-bottom: 12px;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
+      font-size: clamp(1.7rem, 4vw, 2.8rem);
+      color: #fff;
+      line-height: 1.18;
+      max-width: 760px;
+      margin-bottom: 20px;
+    }
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .author-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--gd-700);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    .avatar span {
+      font-family: 'Cinzel', serif;
+      font-size: 0.46rem;
+      color: #fff;
+      text-transform: uppercase;
+    }
+    .author-name {
+      font-family: 'Cinzel', serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.70);
+    }
+    .dot {
+      width: 3px;
+      height: 3px;
+      background: rgba(255,255,255,0.30);
+      border-radius: 50%;
+    }
+    .hero-meta-text {
+      font-family: 'Cinzel', serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.50);
+    }
+
+    /* ─── Share bar ─── */
+    .share-bar {
+      border-bottom: 1px solid var(--gy-100);
+      background: var(--surface);
+      position: sticky;
+      top: 58px;
+      z-index: 30;
+    }
+    .share-bar-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 clamp(16px,4vw,48px);
+      height: 46px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .share-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.48rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gy-600);
+    }
+    .share-icons {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .share-icons a, .share-icons button {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gy-400);
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .share-icons a:hover, .share-icons button:hover { color: var(--bx-700); }
+
+    /* ─── Layout: Body + Sidebar ─── */
+    .layout {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 48px clamp(16px,4vw,48px);
+      display: flex;
+      gap: 64px;
+    }
+
+    /* ─── Article body ─── */
+    article {
+      flex: 1;
+      min-width: 0;
+      max-width: 720px;
+    }
+    .prose {
+      font-family: 'EB Garamond', Garamond, Georgia, serif;
+      font-size: 1.32rem;
+      color: var(--gy-800);
+      line-height: 1.9;
+    }
+    .prose p { margin-bottom: 1.2em; }
+    .prose p:empty { margin-bottom: 0.4em; }
+    .prose h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
+      font-size: 1.5rem;
+      color: var(--gy-900);
+      margin-top: 2.5rem;
+      margin-bottom: 1.25rem;
+      line-height: 1.25;
+    }
+    .prose h3 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
+      font-size: 1.25rem;
+      color: var(--gy-900);
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      line-height: 1.25;
+    }
+    .prose blockquote {
+      border-left: 4px solid var(--gd-600);
+      padding: 16px 16px 16px 24px;
+      background: var(--surface-warm);
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
+      color: var(--gy-700);
+      margin: 1.5rem 0;
+    }
+    .prose blockquote p { margin-bottom: 0; }
+    .prose a { color: var(--bx-700); }
+    .prose a:hover { color: var(--bx-600); }
+    .prose strong { color: var(--gy-900); font-weight: 600; }
+    .prose em { font-style: italic; }
+    .prose ul, .prose ol {
+      padding-left: 1.5rem;
+      margin: 1rem 0 1.5rem;
+    }
+    .prose ul { list-style: disc; }
+    .prose ol { list-style: decimal; }
+    .prose li { margin-bottom: 0.4rem; }
+    .prose li p { margin-bottom: 0; }
+
+    /* ─── Editor's Note ─── */
+    .editors-note {
+      background: var(--gy-50);
+      border-left: 4px solid var(--gy-300);
+      padding: 20px 24px;
+      margin: 32px 0;
+    }
+    .editors-note p {
+      font-family: 'EB Garamond', serif;
+      font-size: 1rem;
+      color: var(--gy-700);
+      line-height: 1.7;
+    }
+    .editors-note strong {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: 600;
+      color: var(--gy-900);
+    }
+
+    /* ─── Featured book ─── */
+    .featured-book {
+      border: 1px solid var(--gy-100);
+      padding: 24px;
+      margin: 40px 0;
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+      background: var(--surface-warm);
+    }
+    .featured-book img {
+      width: 90px;
+      flex-shrink: 0;
+      aspect-ratio: 2/3;
+      object-fit: cover;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .book-info { flex: 1; }
+    .book-tag {
+      font-family: 'Cinzel', serif;
+      font-size: 0.48rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--bx-600);
+      display: block;
+      margin-bottom: 8px;
+    }
+    .book-title {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.2rem;
+      color: var(--gy-900);
+      line-height: 1.3;
+      margin-bottom: 4px;
+    }
+    .book-author {
+      font-family: 'Cinzel', serif;
+      font-size: 0.48rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gy-400);
+      display: block;
+      margin-bottom: 12px;
+    }
+    .book-desc {
+      font-family: 'EB Garamond', serif;
+      font-size: 0.95rem;
+      color: var(--gy-500);
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+    .book-btn {
+      display: inline-block;
+      font-family: 'Cinzel', serif;
+      font-size: 0.48rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      background: var(--bx-700);
+      color: #fff;
+      padding: 8px 16px;
+      transition: background 0.2s;
+    }
+    .book-btn:hover { background: var(--bx-600); }
+
+    /* ─── Triple rule ─── */
+    .triple-rule { margin: 40px 0; }
+    .triple-rule .r1 { display: block; height: 3px; background: var(--bx-800); margin-bottom: 3px; }
+    .triple-rule .r2 { display: block; height: 1.5px; background: var(--gd-600); margin-bottom: 3px; }
+    .triple-rule .r3 { display: block; height: 1px; background: var(--bx-800); }
+
+    /* ─── Newsletter CTA ─── */
+    .newsletter {
+      background: var(--surface-warm);
+      padding: 32px;
+      margin-bottom: 40px;
+    }
+    .newsletter-tag {
+      font-family: 'Cinzel', serif;
+      font-size: 0.52rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--bx-700);
+      display: block;
+      margin-bottom: 8px;
+    }
+    .newsletter h3 {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.4rem;
+      color: var(--gy-900);
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+    .newsletter p {
+      font-family: 'EB Garamond', serif;
+      font-size: 1rem;
+      color: var(--gy-500);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+    .newsletter-form { display: flex; gap: 12px; flex-wrap: wrap; }
+    .newsletter-form input {
+      flex: 1;
+      min-width: 200px;
+      border: 1px solid var(--gy-200);
+      padding: 8px 16px;
+      font-family: 'EB Garamond', serif;
+      font-size: 1rem;
+      color: var(--gy-700);
+      background: var(--surface);
+      outline: none;
+    }
+    .newsletter-form input:focus { border-color: var(--bx-600); }
+    .newsletter-form button {
+      font-family: 'Cinzel', serif;
+      font-size: 0.5rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      background: var(--bx-700);
+      color: #fff;
+      padding: 8px 20px;
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s;
+    }
+    .newsletter-form button:hover { background: var(--bx-600); }
+
+    /* ─── Author bio ─── */
+    .author-bio-section {
+      border-top: 1px solid var(--gy-100);
+      padding-top: 32px;
+    }
+    .section-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.48rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gy-400);
+      display: block;
+      margin-bottom: 20px;
+    }
+    .author-bio-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+    }
+    .avatar-lg {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--gd-700);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    .avatar-lg span {
+      font-family: 'Cinzel', serif;
+      font-size: 0.6rem;
+      color: #fff;
+      text-transform: uppercase;
+    }
+    .author-bio-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--gy-900);
+      margin-bottom: 8px;
+    }
+    .author-bio-text {
+      font-family: 'EB Garamond', serif;
+      font-size: 1rem;
+      color: var(--gy-500);
+      line-height: 1.7;
+    }
+
+    /* ─── Sidebar ─── */
+    aside {
+      width: 260px;
+      flex-shrink: 0;
+    }
+    .sidebar-sticky {
+      position: sticky;
+      top: 106px;
+    }
+    .sidebar-author {
+      margin-bottom: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--gy-100);
+    }
+    .sidebar-author-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .avatar-md {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--gd-700);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .avatar-md span {
+      font-family: 'Cinzel', serif;
+      font-size: 0.5rem;
+      color: #fff;
+      text-transform: uppercase;
+    }
+    .sidebar-author-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--gy-900);
+      line-height: 1.3;
+    }
+    .sidebar-author-bio {
+      font-family: 'EB Garamond', serif;
+      font-size: 0.9rem;
+      color: var(--gy-500);
+      line-height: 1.7;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* ─── Footer ─── */
+    .site-footer {
+      background: var(--bx-900);
+      padding: 48px clamp(16px,4vw,48px);
+      text-align: center;
+    }
+    .site-footer .logo-footer {
+      font-family: 'Cinzel', serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.8);
+      display: block;
+      margin-bottom: 12px;
+    }
+    .site-footer p {
+      font-family: 'Cinzel', serif;
+      font-size: 0.44rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+    }
+
+    @media (max-width: 1023px) {
+      aside { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <span class="logo">The Classical Way</span>
+    <nav>
+      <a href="/artigos">Artigos</a>
+      <a href="/resenhas">Resenhas</a>
+      <a href="/podcasts">Podcasts</a>
+      <a href="/sobre">Sobre</a>
+    </nav>
+  </header>
+
+  <!-- Breadcrumb -->
+  <div class="breadcrumb">
+    <a href="/">Início</a>
+    <span>/</span>
+    <a href="/artigos">Artigos</a>
+    <span>/</span>
+    <span class="active">Sala de Aula</span>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <a href="/artigos?categoria=Sala%20de%20Aula" class="hero-category">Sala de Aula</a>
+      <h1>Guia de Estilo Editorial — Todas as Possibilidades</h1>
+      <div class="hero-meta">
+        <div class="author-row">
+          <a href="/autores/leonardo-santiago" style="display:flex;align-items:center;gap:12px;">
+            <div class="avatar"><span>LS</span></div>
+            <span class="author-name">Leonardo Santiago</span>
+          </a>
+        </div>
+        <div class="dot"></div>
+        <span class="hero-meta-text">10 de abr. de 2026</span>
+        <div class="dot"></div>
+        <span class="hero-meta-text">2 min de leitura</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Share bar -->
+  <div class="share-bar">
+    <div class="share-bar-inner">
+      <span class="share-label">Compartilhar</span>
+      <div class="share-icons">
+        <a href="https://twitter.com/share?url=https://theclassicalway.com.br/artigos/guia-de-estilo&text=Guia%20de%20Estilo%20Editorial%20%E2%80%94%20Todas%20as%20Possibilidades" target="_blank" rel="noopener noreferrer" aria-label="Compartilhar no X">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.261 5.635zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="https://wa.me/?text=Guia%20de%20Estilo%20Editorial%20%E2%80%94%20Todas%20as%20Possibilidades%20https://theclassicalway.com.br/artigos/guia-de-estilo" target="_blank" rel="noopener noreferrer" aria-label="Compartilhar no WhatsApp">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        </a>
+        <a href="mailto:?subject=Guia%20de%20Estilo%20Editorial%20%E2%80%94%20Todas%20as%20Possibilidades&body=https://theclassicalway.com.br/artigos/guia-de-estilo" aria-label="Compartilhar por email">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="0"/><polyline points="2,4 12,13 22,4"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Body + Sidebar -->
+  <div class="layout">
+
+    <!-- Article -->
+    <article>
+      <div class="prose">
+        <p>A Educação Cristã Clássica não é uma moda pedagógica — é o resgate de uma tradição milenar que formou os maiores pensadores, escritores e estadistas da história ocidental. Este artigo é um <strong>guia de estilo editorial</strong> do Classical Way, mostrando todas as possibilidades visuais disponíveis para os nossos autores na <a target="_blank" rel="noopener noreferrer" href="https://virtusecc.com.br">Virtus</a></p>
+
+        <p></p>
+
+        <blockquote><p>Está é uma citação, ok?</p></blockquote>
+
+        <p></p>
+
+        <h2>O que é o Trivium?</h2>
+        <p>O Trivium é composto por três artes da linguagem: <em>Gramática</em>, <em>Lógica</em> e <em>Retórica</em>. Juntas, elas formam a base do pensamento claro, do raciocínio rigoroso e da comunicação eficaz. Não são disciplinas isoladas — são estágios progressivos da formação da mente.</p>
+
+        <h3>Gramática — a fundação</h3>
+        <p>Na etapa da Gramática, o aluno absorve os fatos fundamentais de cada disciplina. É a fase da memorização, da imitação, da aquisição das ferramentas básicas do conhecimento. A criança é naturalmente receptiva a isso — e o método clássico aproveita essa janela de oportunidade.</p>
+
+        <p></p>
+
+        <blockquote><p>Teste</p></blockquote>
+        <blockquote><p>"A educação não é o preenchimento de um balde, mas o acendimento de um fogo." — William Butler Yeats</p></blockquote>
+
+        <h3>Lógica — o desenvolvimento</h3>
+        <p>Na adolescência, o aluno começa a questionar, debater e analisar. A etapa da Lógica canaliza essa energia natural para o raciocínio estruturado. O aluno aprende a identificar falácias, construir argumentos e avaliar evidências.</p>
+
+        <h2>Por que isso importa hoje?</h2>
+        <p>Vivemos numa era de sobrecarga de informação e escassez de sabedoria. As ferramentas do Trivium são precisamente o que falta. Alguns motivos concretos:</p>
+        <ul>
+          <li><p>Formação do caráter e não apenas da competência técnica</p></li>
+          <li><p>Capacidade de ler textos difíceis com compreensão real</p></li>
+          <li><p>Resistência às manipulações da mídia e da propaganda</p></li>
+          <li><p>Enraizamento numa tradição que transcende modas culturais</p></li>
+        </ul>
+
+        <h2>A sequência de estudo recomendada</h2>
+        <ol>
+          <li><p>Comece pela leitura em voz alta — toda noite, em família</p></li>
+          <li><p>Introduza o latim cedo — entre 8 e 10 anos é ideal</p></li>
+          <li><p>Leia os grandes livros na íntegra, não em resumos</p></li>
+          <li><p>Pratique a narração oral antes da escrita</p></li>
+          <li><p>Debata — ensine a criança a defender e questionar posições</p></li>
+        </ol>
+
+        <h2>Uma aula em vídeo</h2>
+        <p>Assista a esta introdução ao método clássico:</p>
+
+        <h2>Conclusão</h2>
+        <p>A Educação Cristã Clássica não é nostalgia — é profecia. Uma geração formada no Trivium e no Quadrivium, ancorada na fé reformada, será capaz de pensar, falar e agir com a sabedoria que o nosso tempo tanto precisa.</p>
+        <p>Este é o caminho clássico. <strong>Este é o Classical Way.</strong></p>
+      </div>
+
+      <!-- Editor's Note -->
+      <div class="editors-note">
+        <p><strong>Nota do editor: </strong>Este artigo é um guia de estilo editorial do Classical Way. Ele demonstra todas as possibilidades visuais disponíveis para os autores que publicam na plataforma. Isso é um teste.</p>
+      </div>
+
+      <!-- Featured Book -->
+      <div class="featured-book">
+        <img src="https://svodiyvilnzryvkpbbsw.supabase.co/storage/v1/object/public/covers/1775924360931.jpg" alt="The Lost Tools of Learning - Teste" />
+        <div class="book-info">
+          <span class="book-tag">Indicação de leitura</span>
+          <p class="book-title">The Lost Tools of Learning - Teste</p>
+          <span class="book-author">Dorothy L. Sayers</span>
+          <p class="book-desc">O ensaio seminal que relançou o interesse pelo Trivium no século XX. Leitura obrigatória para qualquer educador que deseje entender o fundamento do método clássico.</p>
+          <a href="https://www.amazon.com.br/dp/exemplo?tag=classicalway-20" target="_blank" rel="noopener noreferrer" class="book-btn">Comprar na Amazon →</a>
+        </div>
+      </div>
+
+      <!-- Triple rule -->
+      <div class="triple-rule">
+        <span class="r1"></span>
+        <span class="r2"></span>
+        <span class="r3"></span>
+      </div>
+
+      <!-- Newsletter CTA -->
+      <div class="newsletter">
+        <span class="newsletter-tag">Newsletter</span>
+        <h3>Receba os melhores artigos do Classical Way</h3>
+        <p>Toda semana, os conteúdos mais relevantes sobre Educação Cristã Clássica diretamente no seu email.</p>
+        <div class="newsletter-form">
+          <input type="email" placeholder="seu@email.com" />
+          <button>Inscrever-se</button>
+        </div>
+      </div>
+
+      <!-- Author bio -->
+      <div class="author-bio-section">
+        <span class="section-label">Sobre o autor</span>
+        <div class="author-bio-row">
+          <a href="/autores/leonardo-santiago">
+            <div class="avatar-lg"><span>LS</span></div>
+          </a>
+          <div>
+            <a href="/autores/leonardo-santiago">
+              <p class="author-bio-name">Leonardo Santiago</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Sidebar -->
+    <aside>
+      <div class="sidebar-sticky">
+        <div class="sidebar-author">
+          <span class="section-label">Autor</span>
+          <a href="/autores/leonardo-santiago" style="display:block;">
+            <div class="sidebar-author-row">
+              <div class="avatar-md"><span>LS</span></div>
+              <p class="sidebar-author-name">Leonardo Santiago</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <span class="logo-footer">The Classical Way</span>
+    <p>© 2026 The Classical Way — Todos os direitos reservados</p>
+  </footer>
+
+</body>
+</html>
